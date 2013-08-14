@@ -9,10 +9,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-class GameView extends View {
+public class GameView extends View {
 
-    private static final int CANVAS_WIDTH = 464;
-    private static final int CANVAS_HEIGHT = 168;
+    /*public static final int PacmanConfig.sBgPlayWidth = 401;
+    public static final int PacmanConfig.sBgPlayHeight = 622;*/
     
     private int canvasHeight = -1;
     private int canvasWidth = -1;
@@ -45,15 +45,15 @@ class GameView extends View {
     
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        canvasWidth = w > CANVAS_WIDTH ? w : CANVAS_WIDTH;
-        canvasHeight = h > CANVAS_HEIGHT ? h : CANVAS_HEIGHT;
+        canvasWidth = w > PacmanConfig.sBgPlayWidth ? w : PacmanConfig.sBgPlayWidth;
+        canvasHeight = h > PacmanConfig.sBgPlayHeight ? h : PacmanConfig.sBgPlayHeight;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         PacmanCanvas canvasEl = game.getCanvasEl();
-        canvasEl.setLeft((canvasWidth - CANVAS_WIDTH) / 2);
-        canvasEl.setTop((canvasHeight - CANVAS_HEIGHT) / 2);
+        canvasEl.setLeft((canvasWidth - PacmanConfig.sBgPlayWidth) / 2);
+        canvasEl.setTop((canvasHeight - PacmanConfig.sBgPlayHeight) / 2);
         canvasEl.draw(canvas);
     }
 

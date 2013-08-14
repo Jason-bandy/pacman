@@ -7,12 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 import jp.or.iidukat.example.pacman.Direction;
+import jp.or.iidukat.example.pacman.GameView;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import jp.or.iidukat.example.pacman.PacmanGame.GameplayMode;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement.Dot;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.FloatMath;
+import android.util.Log;
 
 public class Playfield extends BaseEntity {
 
@@ -58,8 +61,21 @@ public class Playfield extends BaseEntity {
     // upper left:(5, 1), lower left:(5, 15),
     // upper right:(60, 1), lower right:(60, 15).
     private static final Path[] PATHS = {
-        Path.createHorizontalPath(5, 1, 56),
-        Path.createHorizontalPath(5, 4, 5),
+    	Path.createHorizontalPath(2, 2, PacmanConfig.sWidthPE),
+    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(2, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, PacmanConfig.sWidthPE),
+    	
+    	
+    	Path.createVerticalPath(2, 3, + 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
+    	Path.createVerticalPath(6, 3, 2 + 2*PacmanConfig.sLinePE),
+    	Path.createVerticalPath(10, 3, + 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
+        Path.createVerticalPath(18, 3, PacmanConfig.sHeightPE),
+        /*Path.createVerticalPath(6, 1, 4),
+        Path.createVerticalPath(10, 1, 10),
+        Path.createVerticalPath(12, 1, 10),*/
+//        Path.createVerticalPath(18, 1, 10),
+        /*Path.createHorizontalPath(1, 4, 5),
         Path.createVerticalPath(5, 1, 4),
         Path.createVerticalPath(9, 1, 12),
         Path.createVerticalPath(5, 12, 4),
@@ -72,7 +88,7 @@ public class Playfield extends BaseEntity {
         Path.createHorizontalPath(19, 4, 26),
         Path.createHorizontalPath(13, 5, 7),
         Path.createVerticalPath(13, 5, 4),
-        Path.createHorizontalPath(13, 8, 3),
+        Path.createHorizontalPath(13, PacmanConfig.sStepWidth, 3),
         Path.createVerticalPath(56, 4, 9),
         Path.createHorizontalPath(48, 4, 13),
         Path.createVerticalPath(48, 1, 12),
@@ -93,18 +109,18 @@ public class Playfield extends BaseEntity {
         Path.createHorizontalPath(24, 15, 12),
         Path.createVerticalPath(27, 4, 9),
         Path.createHorizontalPath(52, 9, 5),
-        Path.createTunnelPath(56, 8, 10),
-        Path.createTunnelPath(1, 8, 9),
+        Path.createTunnelPath(56, PacmanConfig.sStepWidth, 10),
+        Path.createTunnelPath(1, PacmanConfig.sStepWidth, 9),*/
     };
 
     private static final Path[] PATHS_HAVING_NO_DOT = {
-        Path.createHorizontalPath(1, 8, 8),
-        Path.createHorizontalPath(57, 8, 9),
+       /* Path.createHorizontalPath(1, PacmanConfig.sStepWidth, PacmanConfig.sStepWidth),
+        Path.createHorizontalPath(57, PacmanConfig.sStepWidth, 9),
         Path.createVerticalPath(44, 2, 10),
         Path.createVerticalPath(35, 5, 7),
-        Path.createHorizontalPath(36, 4, 8),
-        Path.createHorizontalPath(36, 10, 8),
-        Path.createHorizontalPath(39, 15, 2),
+        Path.createHorizontalPath(36, 4, PacmanConfig.sStepWidth),
+        Path.createHorizontalPath(36, 10, PacmanConfig.sStepWidth),
+        Path.createHorizontalPath(39, 15, 2),*/
     };
 
     public static class Position {
@@ -126,21 +142,23 @@ public class Playfield extends BaseEntity {
     }
 
     private static final Position[] ENERGIZER_POSITIONS = {
-        new Position(5, 15),
+        /*new Position(5, 15),
         new Position(5, 3),
-        new Position(15, 8),
+        new Position(15, PacmanConfig.sStepWidth),
         new Position(60, 3),
-        new Position(60, 15),
+        new Position(60, 15),*/
     };
 
     // warp tunnel
     static final Position[] TUNNEL_POS = {
-        new Position(2, 8),
-        new Position(63, 8),
+        new Position(2, PacmanConfig.sStepWidth),
+        new Position(63, PacmanConfig.sStepWidth),
     };
 
     static final int[] PEN_ENTRANCE = {32, 312}; // the entrance position of the ghost's nest
     static final int[] FRUIT_POSITION = { 80, 312 };
+
+	private static final String TAG = "Playfield";
 
     public static class PathElement {
         public static enum Dot {
@@ -241,8 +259,8 @@ public class Playfield extends BaseEntity {
         Appearance a = getAppearance();
         a.setTop(16);
         a.setLeft(0);
-        a.setWidth(464);
-        a.setHeight(136);
+        a.setWidth(PacmanConfig.sBgPlayWidth);
+        a.setHeight(PacmanConfig.sBgPlayHeight);
         a.setOrder(99);
     }
 
@@ -250,7 +268,7 @@ public class Playfield extends BaseEntity {
         clearChildren();
         dotsRemaining = 0;
         dotsEaten = 0;
-        getAppearance().prepareBkPos(256, 0);
+        getAppearance().prepareBkPos(PacmanConfig.sBgTranslateX, 0);
         determinePlayfieldDimensions();
         preparePlayfield();
         preparePaths();
@@ -276,6 +294,7 @@ public class Playfield extends BaseEntity {
 
     private void preparePlayfield() {
         playfield = new HashMap<Integer, Map<Integer, PathElement>>();
+        Log.d(TAG, "preparePlayfield width " + playfieldWidth + " height " + playfieldHeight);
         for (int y = 0; y <= playfieldHeight + 1; y++) {
             Map<Integer, PathElement> row = new HashMap<Integer, PathElement>();
             for (int x = -2; x <= playfieldWidth + 1; x++) {
@@ -283,17 +302,18 @@ public class Playfield extends BaseEntity {
                 p.setPath(false);
                 p.setDot(Dot.NONE);
                 p.setIntersection(false);
-                row.put(Integer.valueOf(x * 8), p);
+                row.put(Integer.valueOf(x * PacmanConfig.sStepWidth), p);
             }
-            playfield.put(Integer.valueOf(y * 8), row);
+            playfield.put(Integer.valueOf(y * PacmanConfig.sStepWidth), row);
         }
     }
 
     private void preparePaths() {
         for (Path p : PATHS) {
             if (p.w > 0) {
-                int y = p.y * 8;
-                for (int x = p.x * 8; x <= (p.x + p.w - 1) * 8; x += 8) {
+                int y = p.y * PacmanConfig.sStepWidth;
+                for (int x = p.x * PacmanConfig.sStepWidth; x <= (p.x + p.w - 1) * PacmanConfig.sStepWidth; x += PacmanConfig.sStepWidth) {
+                	Log.d(TAG, "play path " + p.x + " , " + p.y + " width " + p.w);
                     PathElement pe = playfield.get(Integer.valueOf(y)).get(Integer.valueOf(x));
                     pe.setPath(true);
                     if (pe.getDot() == Dot.NONE) {
@@ -301,18 +321,18 @@ public class Playfield extends BaseEntity {
                         dotsRemaining++;
                     }
                     pe.setTunnel(
-                            !p.tunnel || x != p.x * 8 && x != (p.x + p.w - 1) * 8
+                            !p.tunnel || x != p.x * PacmanConfig.sStepWidth && x != (p.x + p.w - 1) * PacmanConfig.sStepWidth
                                 ? p.tunnel
                                 : false);
                 }
-                playfield.get(Integer.valueOf(y)).get(Integer.valueOf(p.x * 8))
+                playfield.get(Integer.valueOf(y)).get(Integer.valueOf(p.x * PacmanConfig.sStepWidth))
                         .setIntersection(true);
                 playfield.get(Integer.valueOf(y))
-                        .get(Integer.valueOf((p.x + p.w - 1) * 8))
+                        .get(Integer.valueOf((p.x + p.w - 1) * PacmanConfig.sStepWidth))
                         .setIntersection(true);
             } else {
-                int x = p.x * 8;
-                for (int y = p.y * 8; y <= (p.y + p.h - 1) * 8; y += 8) {
+                int x = p.x * PacmanConfig.sStepWidth;
+                for (int y = p.y * PacmanConfig.sStepWidth; y <= (p.y + p.h - 1) * PacmanConfig.sStepWidth; y += PacmanConfig.sStepWidth) {
                     PathElement pe = playfield.get(Integer.valueOf(y)).get(Integer.valueOf(x));
                     if (pe.isPath()) {
                         pe.setIntersection(true);
@@ -323,28 +343,28 @@ public class Playfield extends BaseEntity {
                         dotsRemaining++;
                     }
                     pe.setTunnel(
-                            !p.tunnel || y != p.y * 8 && y != (p.y + p.h - 1) * 8
+                            !p.tunnel || y != p.y * PacmanConfig.sStepWidth && y != (p.y + p.h - 1) * PacmanConfig.sStepWidth
                                 ? p.tunnel
                                 : false);
                 }
-                playfield.get(Integer.valueOf(p.y * 8)).get(Integer.valueOf(x))
+                playfield.get(Integer.valueOf(p.y * PacmanConfig.sStepWidth)).get(Integer.valueOf(x))
                         .setIntersection(true);
-                playfield.get(Integer.valueOf((p.y + p.h - 1) * 8))
+                playfield.get(Integer.valueOf((p.y + p.h - 1) * PacmanConfig.sStepWidth))
                         .get(Integer.valueOf(x)).setIntersection(true);
             }
         }
         for (Path p : PATHS_HAVING_NO_DOT) {
             if (p.w != 0) {
-                for (int x = p.x * 8; x <= (p.x + p.w - 1) * 8; x += 8) {
-                    playfield.get(Integer.valueOf(p.y * 8))
+                for (int x = p.x * PacmanConfig.sStepWidth; x <= (p.x + p.w - 1) * PacmanConfig.sStepWidth; x += PacmanConfig.sStepWidth) {
+                    playfield.get(Integer.valueOf(p.y * PacmanConfig.sStepWidth))
                                 .get(Integer.valueOf(x))
                                 .setDot(Dot.NONE);
                     dotsRemaining--;
                 }
             } else {
-                for (int y = p.y * 8; y <= (p.y + p.h - 1) * 8; y += 8) {
+                for (int y = p.y * PacmanConfig.sStepWidth; y <= (p.y + p.h - 1) * PacmanConfig.sStepWidth; y += PacmanConfig.sStepWidth) {
                     playfield.get(Integer.valueOf(y))
-                                .get(Integer.valueOf(p.x * 8))
+                                .get(Integer.valueOf(p.x * PacmanConfig.sStepWidth))
                                 .setDot(Dot.NONE);
                     dotsRemaining--;
                 }
@@ -353,25 +373,25 @@ public class Playfield extends BaseEntity {
     }
 
     private void prepareAllowedDirections() {
-        for (int y = 8; y <= playfieldHeight * 8; y += 8) {
-            for (int x = 8; x <= playfieldWidth * 8; x += 8) {
+        for (int y = PacmanConfig.sStepWidth; y <= playfieldHeight * PacmanConfig.sStepWidth; y += PacmanConfig.sStepWidth) {
+            for (int x = PacmanConfig.sStepWidth; x <= playfieldWidth * PacmanConfig.sStepWidth; x += PacmanConfig.sStepWidth) {
                 PathElement pe = playfield.get(Integer.valueOf(y))
                                         .get(Integer.valueOf(x));
                 EnumSet<Direction> allowedDir = EnumSet.noneOf(Direction.class);
-                if (playfield.get(Integer.valueOf(y - 8))
+                if (playfield.get(Integer.valueOf(y - PacmanConfig.sStepWidth))
                         .get(Integer.valueOf(x)).isPath()) {
                     allowedDir.add(Direction.UP);
                 }
-                if (playfield.get(Integer.valueOf(y + 8))
+                if (playfield.get(Integer.valueOf(y + PacmanConfig.sStepWidth))
                         .get(Integer.valueOf(x)).isPath()) {
                     allowedDir.add(Direction.DOWN);
                 }
                 if (playfield.get(Integer.valueOf(y))
-                        .get(Integer.valueOf(x - 8)).isPath()) {
+                        .get(Integer.valueOf(x - PacmanConfig.sStepWidth)).isPath()) {
                     allowedDir.add(Direction.LEFT);
                 }
                 if (playfield.get(Integer.valueOf(y))
-                        .get(Integer.valueOf(x + 8)).isPath()) {
+                        .get(Integer.valueOf(x + PacmanConfig.sStepWidth)).isPath()) {
                     allowedDir.add(Direction.RIGHT);
                 }
                 pe.setAllowedDir(allowedDir);
@@ -381,10 +401,10 @@ public class Playfield extends BaseEntity {
 
     private void createDotElements() {
         foods = new HashMap<Integer, Map<Integer, DotElement>>();
-        for (int y = 8; y <= playfieldHeight * 8; y += 8) {
+        for (int y = PacmanConfig.sStepWidth; y <= playfieldHeight * PacmanConfig.sStepWidth; y += PacmanConfig.sStepWidth) {
             Map<Integer, DotElement> row = new HashMap<Integer, DotElement>();
             foods.put(Integer.valueOf(y), row);
-            for (int x = 8; x <= playfieldWidth * 8; x += 8) {
+            for (int x = PacmanConfig.sStepWidth; x <= playfieldWidth * PacmanConfig.sStepWidth; x += PacmanConfig.sStepWidth) {
                 if (playfield.get(Integer.valueOf(y))
                             .get(Integer.valueOf(x)).getDot()
                         != PathElement.Dot.NONE) {
@@ -400,8 +420,8 @@ public class Playfield extends BaseEntity {
     private void createEnergizerElements() {
         List<Energizer> es = new ArrayList<Energizer>();
         for (Position c : ENERGIZER_POSITIONS) {
-            int x = c.x * 8;
-            int y = c.y * 8;
+            int x = c.x * PacmanConfig.sStepWidth;
+            int y = c.y * PacmanConfig.sStepWidth;
             DotElement removed = removeDotElement(x, y);
             if (removed == null) {
                 continue;
@@ -575,13 +595,13 @@ public class Playfield extends BaseEntity {
         createKillScreenElement(280, 80, 192, 56, false);
         killScreenTileX = 80;
         killScreenTileY = 0;
-        for (int x = 280; x <= 472; x += 8) {
-            for (int y = 0; y <= 136; y += 8) {
+        for (int x = 280; x <= 472; x += PacmanConfig.sStepWidth) {
+            for (int y = 0; y <= 136; y += PacmanConfig.sStepWidth) {
                 if (game.rand() < 0.03) {
                     killScreenTileX = (int) FloatMath.floor(game.rand() * 25) * 10;
                     killScreenTileY = (int) FloatMath.floor(game.rand() * 2) * 10;
                 }
-                createKillScreenElement(x, y, 8, 8, true);
+                createKillScreenElement(x, y, PacmanConfig.sStepWidth, PacmanConfig.sStepWidth, true);
             }
         }
     }
@@ -597,7 +617,7 @@ public class Playfield extends BaseEntity {
         tile.init(x, y, width, height);
         if (bgImage) {
             tile.setBgPos(killScreenTileX, killScreenTileY);
-            killScreenTileY += 8;
+            killScreenTileY += PacmanConfig.sStepWidth;
         } else {
             tile.setBgColor(0x000000);
         }
@@ -605,7 +625,7 @@ public class Playfield extends BaseEntity {
     }
     
     public void blink(float gameplayModeTime, float interval) {
-        if (FloatMath.floor(gameplayModeTime / (interval / 8)) % 2 == 0) {
+        if (FloatMath.floor(gameplayModeTime / (interval / PacmanConfig.sStepWidth)) % 2 == 0) {
             getAppearance().changeBkPos(322, 2, false);
         } else {
             getAppearance().changeBkPos(322, 138, false);
@@ -746,8 +766,8 @@ public class Playfield extends BaseEntity {
         void init(int x, int y) {
             super.init(x, y);
             Appearance a = getAppearance();
-            a.setWidth(8);
-            a.setHeight(8);
+            a.setWidth(PacmanConfig.sStepWidth);
+            a.setHeight(PacmanConfig.sStepWidth);
             a.prepareBkPos(0, 144);
             a.setOrder(101);
         }
@@ -817,7 +837,7 @@ public class Playfield extends BaseEntity {
         public void init() {
             Appearance a = getAppearance();
             a.setWidth(48);
-            a.setHeight(8);
+            a.setHeight(PacmanConfig.sStepWidth);
             a.setLeft(264);
             a.setTop(80);
             a.prepareBkPos(160, 0);
@@ -839,10 +859,10 @@ public class Playfield extends BaseEntity {
         public void init() {
             Appearance a = getAppearance();
             a.setWidth(80);
-            a.setHeight(8);
+            a.setHeight(PacmanConfig.sStepWidth);
             a.setLeft(248);
             a.setTop(80);
-            a.prepareBkPos(8, 152);
+            a.prepareBkPos(PacmanConfig.sStepWidth, 152);
             a.setOrder(120);
         }
 

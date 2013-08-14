@@ -1,9 +1,9 @@
 package jp.or.iidukat.example.pacman.entity;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
+import jp.or.iidukat.example.pacman.PacmanGame;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-
-import jp.or.iidukat.example.pacman.PacmanGame;
 
 public class PacmanCanvas extends BaseEntity {
     
@@ -22,8 +22,8 @@ public class PacmanCanvas extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setWidth(464);
-        a.setHeight(168);
+        a.setWidth(PacmanConfig.sBgViewWidth);
+        a.setHeight(PacmanConfig.sBgViewHeight);
         a.setBgColor(0x000000);
     }
 

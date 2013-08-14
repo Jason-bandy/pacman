@@ -65,7 +65,7 @@ public class PacmanGame {
         0.26f
     };
 
-    private static final int[] FPS_OPTIONS = { 90, 45, 30, }; // fps option
+    private static final int[] FPS_OPTIONS = { 60, 45, 30, }; // fps option
     private static final int DEFAULT_FPS = FPS_OPTIONS[0]; // default fps
 
     public static class LevelConfig {
@@ -1638,7 +1638,7 @@ public class PacmanGame {
         }
         int latencyMultiplyer = 0;
         if (lastTimeDelta > tickInterval) {
-            // If the total processing delay is greater than tick​​Interval,
+            // If the total processing delay is greater than tick鈥嬧�Interval,
             // the total processing delay is cut down to less than tickInterval.
             latencyMultiplyer = (int) FloatMath.floor(lastTimeDelta / tickInterval);
             lastTimeDelta -= tickInterval * latencyMultiplyer;
@@ -1872,7 +1872,7 @@ public class PacmanGame {
         sourceImage =
             BitmapFactory.decodeResource(
                 context.getResources(),
-                R.drawable.pacman_sprite);
+                PacmanConfig.sBg_res);
         createCanvasElement();
         speedIntervals = new HashMap<Float, Boolean[]>();
         fpsChoice = 0;

@@ -2,6 +2,7 @@ package jp.or.iidukat.example.pacman.entity;
 
 import jp.or.iidukat.example.pacman.Direction;
 import jp.or.iidukat.example.pacman.Direction.Move;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import jp.or.iidukat.example.pacman.PacmanGame.GameplayMode;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement;
@@ -106,7 +107,7 @@ public abstract class PlayfieldActor extends Actor {
     abstract boolean canChangeSpeedInTunnel();
     abstract void encounterDot(int[] tilePos);
     
-    // be invoked when pos's value is equal to tilePos (pos is a multiple of 8)
+    // be invoked when pos's value is equal to tilePos (pos is a multiple of PacmanConfig.sStepWidth)
     final void enteredTile() {
         warpIfPossible();
         handleAnObjectWhenEncountering();
@@ -137,14 +138,14 @@ public abstract class PlayfieldActor extends Actor {
     abstract void shortcutCorner();
 
     final void warpIfPossible() {
-        if (this.pos[0] == Playfield.TUNNEL_POS[0].getY() * 8
-                && this.pos[1] == Playfield.TUNNEL_POS[0].getX() * 8) { // warp from left to right
-            this.pos[0] = Playfield.TUNNEL_POS[1].getY() * 8;
-            this.pos[1] = (Playfield.TUNNEL_POS[1].getX() - 1) * 8;
-        } else if (this.pos[0] == Playfield.TUNNEL_POS[1].getY() * 8
-                    && this.pos[1] == Playfield.TUNNEL_POS[1].getX() * 8) { // warp from right to left
-            this.pos[0] = Playfield.TUNNEL_POS[0].getY() * 8;
-            this.pos[1] = (Playfield.TUNNEL_POS[0].getX() + 1) * 8;
+        if (this.pos[0] == Playfield.TUNNEL_POS[0].getY() * PacmanConfig.sStepWidth
+                && this.pos[1] == Playfield.TUNNEL_POS[0].getX() * PacmanConfig.sStepWidth) { // warp from left to right
+            this.pos[0] = Playfield.TUNNEL_POS[1].getY() * PacmanConfig.sStepWidth;
+            this.pos[1] = (Playfield.TUNNEL_POS[1].getX() - 1) * PacmanConfig.sStepWidth;
+        } else if (this.pos[0] == Playfield.TUNNEL_POS[1].getY() * PacmanConfig.sStepWidth
+                    && this.pos[1] == Playfield.TUNNEL_POS[1].getX() * PacmanConfig.sStepWidth) { // warp from right to left
+            this.pos[0] = Playfield.TUNNEL_POS[0].getY() * PacmanConfig.sStepWidth;
+            this.pos[1] = (Playfield.TUNNEL_POS[0].getX() + 1) * PacmanConfig.sStepWidth;
         }
     }
     
@@ -167,16 +168,16 @@ public abstract class PlayfieldActor extends Actor {
         Move mv = this.dir.getMove();
         this.pos[mv.getAxis()] += mv.getIncrement();
         
-        float imaginaryTileY = this.pos[0] / 8;
-        float imaginaryTileX = this.pos[1] / 8;
-        int[] nextTile = { Math.round(imaginaryTileY) * 8,
-                            Math.round(imaginaryTileX) * 8 };
+        float imaginaryTileY = this.pos[0] / PacmanConfig.sStepWidth;
+        float imaginaryTileX = this.pos[1] / PacmanConfig.sStepWidth;
+        int[] nextTile = { Math.round(imaginaryTileY) * PacmanConfig.sStepWidth,
+                            Math.round(imaginaryTileX) * PacmanConfig.sStepWidth };
         if (nextTile[0] != this.tilePos[0]
                 || nextTile[1] != this.tilePos[1]) { // the actor is entering into a tile.
             enteringTile(nextTile);
         } else {
-            float[] tile = { FloatMath.floor(imaginaryTileY) * 8,
-                                FloatMath.floor(imaginaryTileX) * 8 };
+            float[] tile = { FloatMath.floor(imaginaryTileY) * PacmanConfig.sStepWidth,
+                                FloatMath.floor(imaginaryTileX) * PacmanConfig.sStepWidth };
             if (this.pos[1] == tile[1]
                     && this.pos[0] == tile[0]) { // the actor has entered into a tile.
                 enteredTile(); 

@@ -3,6 +3,7 @@ package jp.or.iidukat.example.pacman.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -19,8 +20,8 @@ public class CutsceneField extends BaseEntity {
         Appearance a = getAppearance();
         a.setTop(16);
         a.setLeft(0);
-        a.setWidth(464);
-        a.setHeight(136);
+        a.setWidth(PacmanConfig.sBgPlayWidth);
+        a.setHeight(PacmanConfig.sBgPlayHeight);
     }
 
     public void createActors(

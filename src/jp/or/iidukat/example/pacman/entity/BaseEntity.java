@@ -251,6 +251,7 @@ abstract class BaseEntity implements Entity {
         }
 
         private int getCorrectedSpritePos(int p) {
+        	//TODO 
             return p / 8 * 10 + 2;
         }
 
