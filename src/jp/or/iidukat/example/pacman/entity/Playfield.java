@@ -62,9 +62,9 @@ public class Playfield extends BaseEntity {
     // upper right:(60, 1), lower right:(60, 15).
     private static final Path[] PATHS = {
     	Path.createHorizontalPath(2, 2, PacmanConfig.sWidthPE),
-    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
-    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
-    	Path.createHorizontalPath(2, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, PacmanConfig.sWidthPE),
+    	Path.createHorizontalPath(12, 2+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(12, 2+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(2, 2+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, PacmanConfig.sWidthPE),
     	
     	
     	Path.createVerticalPath(2, 3, + 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),

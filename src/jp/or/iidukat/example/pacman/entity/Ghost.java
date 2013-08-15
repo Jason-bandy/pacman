@@ -7,6 +7,7 @@ import jp.or.iidukat.example.pacman.PacmanGame.GameplayMode;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement;
 import android.graphics.Bitmap;
 import android.util.FloatMath;
+import android.util.Log;
 
 public abstract class Ghost extends PlayfieldActor {
 
@@ -27,6 +28,7 @@ public abstract class Ghost extends PlayfieldActor {
     }
     
     static final float LEAVING_PEN_SPEED = 0.8f * 0.4f;
+	private static final String TAG = "Ghost";
     
     static class MoveInPen {
         final float x;
@@ -155,6 +157,7 @@ public abstract class Ghost extends PlayfieldActor {
 
     private void decideNextDir(boolean reversed) {
         int[] currentTilePos = tilePos;
+        Log.d(TAG, "decideNextDir " + currentTilePos[0] + " " + currentTilePos[1]);
         Move currentMove = dir.getMove();
         int[] newTilePos = new int[] {currentTilePos[0], currentTilePos[1]};
         newTilePos[currentMove.getAxis()] += currentMove.getIncrement() * 8; // anticipate the next tile by the direction of the progress
