@@ -11,7 +11,7 @@ import android.graphics.Bitmap;
 public class Clyde extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(41.375f, 7, Direction.UP, 0, 20);
+        InitPosition.createGhostInitPosition(10.5f, 2, Direction.UP, 0, 20);
 
     // movements of Clyde in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;

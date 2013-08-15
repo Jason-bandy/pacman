@@ -62,15 +62,15 @@ public class Playfield extends BaseEntity {
     // upper right:(60, 1), lower right:(60, 15).
     private static final Path[] PATHS = {
     	Path.createHorizontalPath(2, 2, PacmanConfig.sWidthPE),
-    	Path.createHorizontalPath(12, 2+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
-    	Path.createHorizontalPath(12, 2+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
-    	Path.createHorizontalPath(2, 2+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, PacmanConfig.sWidthPE),
+    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(2, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, PacmanConfig.sWidthPE),
     	
     	
-    	Path.createVerticalPath(2, 3, + 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
-    	Path.createVerticalPath(6, 3, 2 + 2*PacmanConfig.sLinePE),
-    	Path.createVerticalPath(10, 3, + 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
-        Path.createVerticalPath(18, 3, PacmanConfig.sHeightPE),
+    	Path.createVerticalPath(2, 2, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
+    	Path.createVerticalPath(6, 2, 2 + 2*PacmanConfig.sLinePE),
+    	Path.createVerticalPath(10, 2, + 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
+        Path.createVerticalPath(18, 2, PacmanConfig.sHeightPE),
         /*Path.createVerticalPath(6, 1, 4),
         Path.createVerticalPath(10, 1, 10),
         Path.createVerticalPath(12, 1, 10),*/

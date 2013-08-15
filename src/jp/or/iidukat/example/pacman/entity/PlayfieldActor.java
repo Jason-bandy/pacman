@@ -9,6 +9,7 @@ import jp.or.iidukat.example.pacman.entity.Playfield.PathElement;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement.Dot;
 import android.graphics.Bitmap;
 import android.util.FloatMath;
+import android.util.Log;
 
 public abstract class PlayfieldActor extends Actor {
 
@@ -59,6 +60,8 @@ public abstract class PlayfieldActor extends Actor {
         }
     }
 
+	private static final String TAG = "PlayfieldActor";
+
     int[] tilePos;
     int[] lastGoodTilePos;
     Direction lastActiveDir = Direction.NONE;
@@ -85,6 +88,7 @@ public abstract class PlayfieldActor extends Actor {
 
         this.lastGoodTilePos = new int[] { tilePos[0], tilePos[1] };
 
+        Log.d(TAG, "PlayfieldActor entering Tile " + tilePos[0] + " , " + tilePos[1]);
         // passing the tunnel(currentSpeed:2) or the others(currentSpeed:0)
         if (game.getPathElement(tilePos[1], tilePos[0]).isTunnel()) {
             if (canChangeSpeedInTunnel()) {

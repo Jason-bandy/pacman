@@ -2,6 +2,7 @@ package jp.or.iidukat.example.pacman.entity;
 
 import jp.or.iidukat.example.pacman.Direction;
 import jp.or.iidukat.example.pacman.Direction.Move;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import jp.or.iidukat.example.pacman.PacmanGame.GameplayMode;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement;
@@ -64,10 +65,10 @@ public abstract class Ghost extends PlayfieldActor {
     @Override
     public final void arrange() {
         InitPosition p = getInitPosition();
-        this.pos = new float[] {p.y * 8, p.x * 8};
-        this.tilePos = new int[] {(int) p.y * 8, (int) p.x * 8};
-        this.targetPos = new float[] {p.scatterY * 8, p.scatterX * 8};
-        this.scatterPos = new float[] {p.scatterY * 8, p.scatterX * 8};
+        this.pos = new float[] {p.y * PacmanConfig.sStepWidth, p.x * PacmanConfig.sStepWidth};
+        this.tilePos = new int[] {(int) p.y * PacmanConfig.sStepWidth, (int) p.x * PacmanConfig.sStepWidth};
+        this.targetPos = new float[] {p.scatterY * PacmanConfig.sStepWidth, p.scatterX * PacmanConfig.sStepWidth};
+        this.scatterPos = new float[] {p.scatterY * PacmanConfig.sStepWidth, p.scatterX * PacmanConfig.sStepWidth};
         this.lastActiveDir = this.dir = p.dir;
         this.physicalSpeed = 0;
         this.nextDir = Direction.NONE;
@@ -160,7 +161,7 @@ public abstract class Ghost extends PlayfieldActor {
         Log.d(TAG, "decideNextDir " + currentTilePos[0] + " " + currentTilePos[1]);
         Move currentMove = dir.getMove();
         int[] newTilePos = new int[] {currentTilePos[0], currentTilePos[1]};
-        newTilePos[currentMove.getAxis()] += currentMove.getIncrement() * 8; // anticipate the next tile by the direction of the progress
+        newTilePos[currentMove.getAxis()] += currentMove.getIncrement() * PacmanConfig.sStepWidth; // anticipate the next tile by the direction of the progress
         PathElement destination = game.getPathElement(newTilePos[1], newTilePos[0]);
         if (reversed && !destination.isIntersection()) {
             // when the ghost has already reversed its direction and its destination is neither a dead end nor a intersection,
@@ -267,8 +268,8 @@ public abstract class Ghost extends PlayfieldActor {
         }
 
         MoveInPen mv = getMovesInPen()[this.routineMoveId];
-        this.pos[0] = mv.y * 8;
-        this.pos[1] = mv.x * 8;
+        this.pos[0] = mv.y * PacmanConfig.sStepWidth;
+        this.pos[1] = mv.x * PacmanConfig.sStepWidth;
         this.dir = mv.dir;
         this.physicalSpeed = 0;
         this.speedIntervals = game.getSpeedIntervals(mv.speed);
@@ -294,15 +295,15 @@ public abstract class Ghost extends PlayfieldActor {
                 switch (this.dir) {
                 case UP:
                 case LEFT:
-                    if (this.pos[m.getAxis()] < mv.dest * 8) {
-                        this.pos[m.getAxis()] = mv.dest * 8;
+                    if (this.pos[m.getAxis()] < mv.dest * PacmanConfig.sStepWidth) {
+                        this.pos[m.getAxis()] = mv.dest * PacmanConfig.sStepWidth;
                         this.proceedToNextRoutineMove = true;
                     }
                     break;
                 case DOWN:
                 case RIGHT:
-                    if (this.pos[m.getAxis()] > mv.dest * 8) {
-                        this.pos[m.getAxis()] = mv.dest * 8;
+                    if (this.pos[m.getAxis()] > mv.dest * PacmanConfig.sStepWidth) {
+                        this.pos[m.getAxis()] = mv.dest * PacmanConfig.sStepWidth;
                         this.proceedToNextRoutineMove = true;
                     }
                     break;

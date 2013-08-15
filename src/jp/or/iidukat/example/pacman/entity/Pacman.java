@@ -2,17 +2,20 @@ package jp.or.iidukat.example.pacman.entity;
 
 import jp.or.iidukat.example.pacman.Direction;
 import jp.or.iidukat.example.pacman.Direction.Move;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import jp.or.iidukat.example.pacman.PacmanGame.GameplayMode;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement;
-
 import android.graphics.Bitmap;
 import android.util.FloatMath;
+import android.util.Log;
 
 public class Pacman extends PlayfieldActor {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createPlayerInitPosition(39.5f, 15, Direction.LEFT);
+        InitPosition.createPlayerInitPosition(12.5f, 2, Direction.UP);
+
+	private static final String TAG = "Pacman";
 
     private float[] posDelta;
     Direction requestedDir = Direction.NONE;
@@ -25,9 +28,9 @@ public class Pacman extends PlayfieldActor {
     @Override
     public void arrange() {
         InitPosition p = getInitPosition();
-        this.pos = new float[] { p.y * 8, p.x * 8 };
+        this.pos = new float[] { p.y * PacmanConfig.sStepWidth, p.x * PacmanConfig.sStepWidth };
         this.posDelta = new float[] { 0, 0 };
-        this.tilePos = new int[] { (int) p.y * 8, (int) p.x * 8 };
+        this.tilePos = new int[] { (int) p.y * PacmanConfig.sStepWidth, (int) p.x * PacmanConfig.sStepWidth };
         this.lastActiveDir = this.dir = p.dir;
         this.physicalSpeed = 0;
         this.requestedDir = this.nextDir = Direction.NONE;
@@ -62,6 +65,7 @@ public class Pacman extends PlayfieldActor {
                 this.requestedDir = Direction.NONE;
             }
 
+            Log.d(TAG, "Pacman move step ");
             this.step();
         }
     }
@@ -207,7 +211,7 @@ public class Pacman extends PlayfieldActor {
         // eat a fruit
         if (this.pos[0] == Playfield.FRUIT_POSITION[0]
                 && (this.pos[1] == Playfield.FRUIT_POSITION[1]
-                    || this.pos[1] == Playfield.FRUIT_POSITION[1] + 8)) {
+                    || this.pos[1] == Playfield.FRUIT_POSITION[1] + PacmanConfig.sStepWidth)) {
             game.eatFruit();
         }
     }

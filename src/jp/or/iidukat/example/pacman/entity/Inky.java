@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import jp.or.iidukat.example.pacman.Direction;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.Direction.Move;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import android.graphics.Bitmap;
@@ -12,7 +13,7 @@ import android.graphics.Bitmap;
 public class Inky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(37.625f, 7, Direction.UP, 57, 20);
+        InitPosition.createGhostInitPosition(17.625f, 2, Direction.LEFT, 57, 20);
 
     // movements of Inky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
@@ -22,9 +23,9 @@ public class Inky extends Ghost {
         m.put(
             GhostMode.IN_PEN,
             new MoveInPen[] {
-                new MoveInPen(37.6f, 7, Direction.UP, 6.375f, 0.48f),
-                new MoveInPen(37.6f, 6.375f, Direction.DOWN, 7.625f, 0.48f),
-                new MoveInPen(37.6f, 7.625f, Direction.UP, 7, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 6.375f, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY-0.25f, Direction.DOWN, 7.625f, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY+0.25f, Direction.UP, 7, 0.48f),
             });            
         m.put(
             GhostMode.LEAVING_PEN,

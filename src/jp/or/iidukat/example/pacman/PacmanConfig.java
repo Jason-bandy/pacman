@@ -17,6 +17,12 @@ public class PacmanConfig {
 	public static final int sHeightPE = 30;
 	
 	
+	public static final float sPenPosX = 5.5f;
+	public static final float sPenPosY = 6;
+	
+	
+	
+	
 	//布局排版
 	int rowsCount = 18;
 	int columsCount = 30;

@@ -5,13 +5,14 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import jp.or.iidukat.example.pacman.Direction;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import android.graphics.Bitmap;
 
 public class Blinky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(39.5f, 4, Direction.LEFT, 57, -4);
+        InitPosition.createGhostInitPosition(2.5f, 2, Direction.RIGHT, 57, -4);
 
     // movements of Blinky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
@@ -20,10 +21,10 @@ public class Blinky extends Ghost {
             new EnumMap<GhostMode, MoveInPen[]>(GhostMode.class);
         m.put(
             GhostMode.ENTERING_PEN,
-            new MoveInPen[] { new MoveInPen(39.5f, 4, Direction.DOWN, 7, 1.6f) });
+            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.DOWN, 7, 1.6f) });
         m.put(
             GhostMode.RE_LEAVING_FROM_PEN,
-            new MoveInPen[] { new MoveInPen(39.5f, 7, Direction.UP, 4, LEAVING_PEN_SPEED) });
+            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 4, LEAVING_PEN_SPEED) });
 
         MOVES_IN_PEN = Collections.unmodifiableMap(m);
     }
