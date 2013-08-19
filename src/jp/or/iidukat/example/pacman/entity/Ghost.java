@@ -472,6 +472,7 @@ public abstract class Ghost extends PlayfieldActor {
 
     @Override
     public final void move() {
+    	Log.d(TAG, "move " + this.getClass());
         if (game.getGameplayMode() == GameplayMode.ORDINARY_PLAYING
                 || game.getGameplayMode() == GameplayMode.GHOST_DIED
                     && (this.mode == GhostMode.EATEN

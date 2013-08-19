@@ -155,7 +155,7 @@ public class Playfield extends BaseEntity {
         new Position(63, PacmanConfig.sStepWidth),
     };
 
-    static final int[] PEN_ENTRANCE = {32, 312}; // the entrance position of the ghost's nest
+    static final int[] PEN_ENTRANCE = {6, 2}; // the entrance position of the ghost's nest
     static final int[] FRUIT_POSITION = { 80, 312 };
 
 	private static final String TAG = "Playfield";

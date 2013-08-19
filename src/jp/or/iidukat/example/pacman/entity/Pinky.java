@@ -23,9 +23,9 @@ public class Pinky extends Ghost {
         m.put(
             GhostMode.IN_PEN,
             new MoveInPen[] {
-                new MoveInPen(39.5f, 7, Direction.DOWN, 7.625f, 0.48f),
-                new MoveInPen(39.5f, 7.625f, Direction.UP, 6.375f, 0.48f),
-                new MoveInPen(39.5f, 6.375f, Direction.DOWN, 7, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.DOWN, 7.625f, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 6.375f, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.DOWN, 7, 0.48f),
             });
         m.put(
             GhostMode.LEAVING_PEN,
@@ -59,9 +59,9 @@ public class Pinky extends Ghost {
         PlayfieldActor pacman = game.getPacman();
         Move mv = pacman.dir.getMove();
         this.targetPos = new float[] { pacman.tilePos[0], pacman.tilePos[1] };
-        this.targetPos[mv.getAxis()] += 32 * mv.getIncrement();
+        this.targetPos[mv.getAxis()] += PacmanConfig.sStepWidth*4 * mv.getIncrement();
         if (pacman.dir == Direction.UP) {
-            this.targetPos[1] -= 32;
+            this.targetPos[1] -= PacmanConfig.sStepWidth*4;
         }
     }
     

@@ -92,7 +92,7 @@ public abstract class PlayfieldActor extends Actor {
         // passing the tunnel(currentSpeed:2) or the others(currentSpeed:0)
         if (game.getPathElement(tilePos[1], tilePos[0]).isTunnel()) {
             if (canChangeSpeedInTunnel()) {
-                this.changeSpeed(CurrentSpeed.PASSING_TUNNEL);
+                this.changeSpeed(CurrentSpeed.PASSING_TUNNEL); 
             }
         } else {
             this.changeSpeed(CurrentSpeed.NORMAL);

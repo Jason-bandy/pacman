@@ -7,7 +7,7 @@ public class PacmanConfig {
 	public final static int sBgPlayHeight = 580;//136;
 	
 	public final static int sStepWidth = 21;
-	public static final int sBg_res = R.drawable.pacman_m4399_2;
+	public static final int sBg_res = R.drawable.pacman_m4399_3;
 	public static final int sBgTranslateX = 256;//246;
 	public static final int sWordHPE = 6;
 	public static final int sWordVPE = 10;
