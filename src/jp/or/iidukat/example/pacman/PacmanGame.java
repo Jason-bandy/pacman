@@ -978,8 +978,8 @@ public class PacmanGame {
         restartActors();
         updateActorPositions();
         switchMainGhostMode(GhostMode.SCATTER, true);
-        for (int i = 1; i < 4; i++) {
-            getGhosts()[i].switchGhostMode(GhostMode.IN_PEN);
+        for (int i = 2; i < 4; i++) {
+//            getGhosts()[i].switchGhostMode(GhostMode.IN_PEN);
         }
         dotEatingChannel = 0;
         dotEatingSoundPart = 1;

@@ -7,12 +7,14 @@ import java.util.Map;
 import jp.or.iidukat.example.pacman.Direction;
 import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
+import jp.or.iidukat.example.pacman.entity.PlayfieldActor.InitPosition;
 import android.graphics.Bitmap;
 
 public class Blinky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(2.5f, 2, Direction.RIGHT, 57, -4);
+//        InitPosition.createGhostInitPosition(2.5f, 2, Direction.RIGHT, 57, -4);
+    		InitPosition.createGhostInitPosition(6f, 13, Direction.LEFT, 0, 0);
 
     // movements of Blinky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;

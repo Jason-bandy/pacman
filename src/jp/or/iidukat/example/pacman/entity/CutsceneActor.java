@@ -2,6 +2,7 @@ package jp.or.iidukat.example.pacman.entity;
 
 import jp.or.iidukat.example.pacman.Direction;
 import jp.or.iidukat.example.pacman.Direction.Move;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import jp.or.iidukat.example.pacman.entity.CutsceneActor.Cutscene.StartPoint;
 import android.graphics.Bitmap;
@@ -18,7 +19,7 @@ public abstract class CutsceneActor extends Actor {
     public void init() {
         super.init();
         float[] start = getStartPoint(getCutscene());
-        pos = new float[] { start[0] * 8, start[1] * 8 };
+        pos = new float[] { start[0] * PacmanConfig.sStepWidth, start[1] * PacmanConfig.sStepWidth };
     }
 
     final float[] getStartPoint(Cutscene cutscene) {

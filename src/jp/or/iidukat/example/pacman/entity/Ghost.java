@@ -81,6 +81,10 @@ public abstract class Ghost extends PlayfieldActor {
     public final void switchGhostMode(GhostMode mode) {
         GhostMode oldMode = this.mode;
         this.mode = mode;
+        Log.d(TAG, "switchGhostMode " + mode);
+        /*if (true){
+        	throw new RuntimeException();
+        }*/
         if (this == game.getClyde()
                 && (mode == GhostMode.IN_PEN || oldMode == GhostMode.IN_PEN)) {
             game.updateCruiseElroySpeed();
@@ -230,6 +234,7 @@ public abstract class Ghost extends PlayfieldActor {
     // when the ghost stays in the pen or goes out of the pen, manage its behaviors
     private void switchFollowingRoutine() {
         this.routineMoveId++;
+        Log.d(TAG, this.getClass() + "switchFollowingRoutine " + routineMoveId);
         if (this.routineMoveId == getMovesInPen().length) { // the end of the routine
             if (this.mode == GhostMode.IN_PEN && this.freeToLeavePen
                     && !game.isGhostExitingPenNow()) { // the conditions of going out are met
@@ -472,16 +477,17 @@ public abstract class Ghost extends PlayfieldActor {
 
     @Override
     public final void move() {
-    	Log.d(TAG, "move " + this.getClass());
+//    	Log.d(TAG, "move " + this.getClass());
         if (game.getGameplayMode() == GameplayMode.ORDINARY_PLAYING
                 || game.getGameplayMode() == GameplayMode.GHOST_DIED
-                    && (this.mode == GhostMode.EATEN
+                && (this.mode == GhostMode.EATEN
                             || this.mode == GhostMode.ENTERING_PEN)) {
             if (this.followingRoutine) {
                 this.followRoutine();
                 if (this.mode == GhostMode.ENTERING_PEN) this.followRoutine();
             } else {
                 this.step();
+                Log.d(TAG, " step one " );
                 if (this.mode == GhostMode.EATEN) this.step();
             }
         }

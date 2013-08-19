@@ -7,35 +7,43 @@ import java.util.Map;
 import jp.or.iidukat.example.pacman.Direction;
 import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.Direction.Move;
+import jp.or.iidukat.example.pacman.entity.Ghost.GhostMode;
+import jp.or.iidukat.example.pacman.entity.Ghost.MoveInPen;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import android.graphics.Bitmap;
 
 public class Pinky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(14.5f, 2, Direction.LEFT, 0, -4);
+        InitPosition.createGhostInitPosition(2f, 13, Direction.UP, 0, 0);
 
     // movements of Pinky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
     static {
         Map<GhostMode, MoveInPen[]> m =
             new EnumMap<GhostMode, MoveInPen[]>(GhostMode.class);
-        m.put(
+        /*m.put(
             GhostMode.IN_PEN,
             new MoveInPen[] {
-                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.DOWN, 7.625f, 0.48f),
-                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 6.375f, 0.48f),
-                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.DOWN, 7, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 2.625f, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.RIGHT, 1.375f, 0.48f),
+                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 2, 0.48f),
             });
         m.put(
             GhostMode.LEAVING_PEN,
-            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 4, LEAVING_PEN_SPEED) });
+            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 2, LEAVING_PEN_SPEED) });
         m.put(
             GhostMode.ENTERING_PEN,
-            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY-2, Direction.DOWN, 7, 1.6f) });
+            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY-2, Direction.RIGHT, 7, 1.6f) });
         m.put(
             GhostMode.RE_LEAVING_FROM_PEN,
-            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 4, LEAVING_PEN_SPEED) });
+            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 4, LEAVING_PEN_SPEED) });*/
+            m.put(
+            		GhostMode.ENTERING_PEN,
+            		new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.DOWN, 7, 1.6f) });
+            m.put(
+            		GhostMode.RE_LEAVING_FROM_PEN,
+            		new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 4, LEAVING_PEN_SPEED) });
 
         MOVES_IN_PEN = Collections.unmodifiableMap(m);
     }

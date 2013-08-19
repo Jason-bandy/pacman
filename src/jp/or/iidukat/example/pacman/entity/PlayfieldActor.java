@@ -83,6 +83,7 @@ public abstract class PlayfieldActor extends Actor {
     // be invoked when the difference between tilePos and pos is significant.
     final void enteringTile(int[] tilePos) {
         game.setTilesChanged(true);
+        Log.d(TAG, "PlayfieldActor entering Tile " + tilePos[0] + " , " + tilePos[1]);
         adjustPosOnEnteringTile(tilePos);
         reverseOnEnteringTile();
 
@@ -171,7 +172,7 @@ public abstract class PlayfieldActor extends Actor {
 
         Move mv = this.dir.getMove();
         this.pos[mv.getAxis()] += mv.getIncrement();
-        
+        Log.d(TAG, "step pos " + pos[0] + " , " + pos[1]);
         float imaginaryTileY = this.pos[0] / PacmanConfig.sStepWidth;
         float imaginaryTileX = this.pos[1] / PacmanConfig.sStepWidth;
         int[] nextTile = { Math.round(imaginaryTileY) * PacmanConfig.sStepWidth,
