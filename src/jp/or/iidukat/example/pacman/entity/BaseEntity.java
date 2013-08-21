@@ -115,7 +115,7 @@ abstract class BaseEntity implements Entity {
         }
     }
     
-    private class AppearanceImpl implements Appearance {
+    public class AppearanceImpl implements Appearance {
         private int height;
         private int width;
         private float top;
@@ -134,10 +134,29 @@ abstract class BaseEntity implements Entity {
         
         private final float[] parentSize = new float[] { 0, 0 };
         private final float[] adjustedSize = new float[] { 0, 0 };
+        private final float[] adjustedTargetSize = new float[] { 0, 0 };
         private final float[] adjustedPos = new float[] { 0, 0 };
         private final float[] adjustedBgPos = new float[] { 0, 0 };
+		private int targetHeight;
+		public int getTargetHeight() {
+			return targetHeight;
+		}
+
+		public void setTargetHeight(int targetHeight) {
+			this.targetHeight = targetHeight;
+		}
+
+		private int targetWidth;
         
-        AppearanceImpl(Bitmap sourceImage) {
+        public int getTargetWidth() {
+			return targetWidth;
+		}
+
+		public void setTargetWidth(int targetWidth) {
+			this.targetWidth = targetWidth;
+		}
+
+		AppearanceImpl(Bitmap sourceImage) {
             this.sourceImage = sourceImage;
         }
 
@@ -351,8 +370,8 @@ abstract class BaseEntity implements Entity {
             dest.set(
                     adjustedPos[1],
                     adjustedPos[0],
-                    adjustedPos[1] + adjustedSize[1],
-                    adjustedPos[0] + adjustedSize[0]);
+                    adjustedPos[1] + adjustedTargetSize[1],
+                    adjustedPos[0] + adjustedTargetSize[0]);
             canvas.drawBitmap(sourceImage, src, dest, null);
         }
         
@@ -379,6 +398,8 @@ abstract class BaseEntity implements Entity {
             adjustedPos[1] = getLeft();
             adjustedSize[0] = height;
             adjustedSize[1] = width;
+            adjustedTargetSize[0] = targetHeight == 0 ? height : targetHeight;
+            adjustedTargetSize[1] = targetWidth == 0 ? width : targetWidth;
             adjustedBgPos[0] = bgPosY;
             adjustedBgPos[1] = bgPosX; 
 

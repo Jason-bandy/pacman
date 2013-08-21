@@ -1,5 +1,6 @@
 package jp.or.iidukat.example.pacman.entity;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
@@ -15,7 +16,7 @@ public class Sound extends BaseEntity {
         a.setTop(156);
         a.setWidth(12);
         a.setHeight(12);
-        a.prepareBkPos(-32, -16);
+        a.prepareBkPos(PacmanConfig.sDots_left, -16);
     }
 
     public void turnOn() {

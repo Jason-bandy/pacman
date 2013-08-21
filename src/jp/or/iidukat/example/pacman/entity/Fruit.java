@@ -1,5 +1,6 @@
 package jp.or.iidukat.example.pacman.entity;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -25,7 +26,7 @@ public class Fruit extends BaseEntity {
         a.setTop(PacmanGame.getFieldY(y));
         a.setLeftOffset(-8);
         a.setTopOffset(-4);
-        a.prepareBkPos(-32, -16);
+        a.prepareBkPos(PacmanConfig.sDots_left, -16);
         a.setOrder(105);
     }
     

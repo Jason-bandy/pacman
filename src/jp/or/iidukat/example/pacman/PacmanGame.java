@@ -1724,6 +1724,8 @@ public class PacmanGame {
 
     private String oldAmbient;
 
+	private Bitmap mPlayFieldBg;
+
     private void playSound(String track, int channel) {
         playSound(track, channel, false);
     }
@@ -1835,7 +1837,7 @@ public class PacmanGame {
     }
 
     private void createCanvasElement() {
-        canvasEl = new PacmanCanvas(sourceImage);
+        canvasEl = new PacmanCanvas(sourceImage, mPlayFieldBg);
         canvasEl.init();
     }
 
@@ -1873,6 +1875,8 @@ public class PacmanGame {
             BitmapFactory.decodeResource(
                 context.getResources(),
                 PacmanConfig.sBg_res);
+        
+        mPlayFieldBg = BitmapFactory.decodeResource(context.getResources(), R.drawable.chidoudou);
         createCanvasElement();
         speedIntervals = new HashMap<Float, Boolean[]>();
         fpsChoice = 0;
@@ -2119,7 +2123,7 @@ public class PacmanGame {
     }
     
     public static float getFieldX(float x) {
-        return x + -32;
+        return x + PacmanConfig.sDots_left;
     }
 
     public static float getFieldY(float y) {

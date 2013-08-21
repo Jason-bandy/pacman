@@ -3,12 +3,12 @@ package jp.or.iidukat.example.pacman;
 public class PacmanConfig {
 	public final static int sBgViewWidth = 400;//464;
 	public final static int sBgViewHeight = 600;//168;
-	public final static int sBgPlayWidth = 400;//464;
-	public final static int sBgPlayHeight = 580;//136;
+	public final static int sBgPlayWidth = 480;//464;
+	public final static int sBgPlayHeight = 700;//136;
 	
-	public final static int sStepWidth = 18;
+	public final static int sStepWidth = 20;
 	public static final int sBg_res = R.drawable.pacman_m4399_3;
-	public static final int sBgTranslateX = 256;//246;
+	public static final int sBgTranslateX = 0;//246;
 	public static final int sWordHPE = 6;
 	public static final int sWordVPE = 10;
 	public static final int sLinePE = 2;
@@ -19,6 +19,8 @@ public class PacmanConfig {
 	
 	public static final float sPenPosX = 6f;
 	public static final float sPenPosY = 13;
+	public static final int sDots_left = 0;
+	public static final int sDots_top = 0;
 	
 	
 	

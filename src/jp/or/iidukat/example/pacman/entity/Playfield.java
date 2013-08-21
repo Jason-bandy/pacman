@@ -11,6 +11,7 @@ import jp.or.iidukat.example.pacman.GameView;
 import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import jp.or.iidukat.example.pacman.PacmanGame.GameplayMode;
+import jp.or.iidukat.example.pacman.entity.BaseEntity.AppearanceImpl;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement.Dot;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -247,8 +248,13 @@ public class Playfield extends BaseEntity {
     private Ready ready;
     private GameOver gameover;
 
-    public Playfield(Bitmap sourceImage, PacmanGame game) {
+	private Bitmap bg;
+
+	private AppearanceImpl mAppearance;
+
+    public Playfield(Bitmap sourceImage, Bitmap bg, PacmanGame game) {
         super(sourceImage, true);
+        this.bg = bg;
         this.game = game;
     }
 
@@ -258,11 +264,19 @@ public class Playfield extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setTop(16);
+        a.setTop(18);
         a.setLeft(0);
         a.setWidth(PacmanConfig.sBgPlayWidth);
         a.setHeight(PacmanConfig.sBgPlayHeight);
         a.setOrder(99);
+        mAppearance = new BaseEntity.AppearanceImpl(bg);
+        mAppearance.setTop(18);
+        mAppearance.setLeft(0);
+        mAppearance.setWidth(PacmanConfig.sBgPlayWidth);
+        mAppearance.setHeight(PacmanConfig.sBgPlayHeight);
+        mAppearance.setTargetHeight(800);
+        mAppearance.setTargetWidth(480);
+        mAppearance.setOrder(99);
     }
 
     public void reset() {
@@ -270,6 +284,7 @@ public class Playfield extends BaseEntity {
         dotsRemaining = 0;
         dotsEaten = 0;
         getAppearance().prepareBkPos(PacmanConfig.sBgTranslateX, 0);
+        mAppearance.prepareBkPos(PacmanConfig.sBgTranslateX, 0);
         determinePlayfieldDimensions();
         preparePlayfield();
         preparePaths();
@@ -635,9 +650,9 @@ public class Playfield extends BaseEntity {
 
     @Override
     void doDraw(Canvas canvas) {
-        getAppearance().drawBitmap(canvas);
+    	mAppearance.drawBitmap(canvas);
     }
-
+    
     public Pacman getPacman() {
         return pacman;
     }
@@ -714,8 +729,8 @@ public class Playfield extends BaseEntity {
 
         void init(int x, int y) {
             Appearance a = getAppearance();
-            a.setLeft(x + -32);
-            a.setTop(y + 0);
+            a.setLeft(x + PacmanConfig.sDots_left);
+            a.setTop(y + PacmanConfig.sDots_top);
         }
         
         @Override

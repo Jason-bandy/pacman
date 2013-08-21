@@ -15,9 +15,11 @@ public class PacmanCanvas extends BaseEntity {
     private Level level;
     
     private CutsceneField cutsceneField;
+	private Bitmap mPlayFieldBg;
     
-    public PacmanCanvas(Bitmap sourceImage) {
+    public PacmanCanvas(Bitmap sourceImage, Bitmap playFieldBg) {
         super(sourceImage, true);
+        mPlayFieldBg = playFieldBg;
     }
 
     public void init() {
@@ -29,7 +31,7 @@ public class PacmanCanvas extends BaseEntity {
 
     public void createPlayfield(PacmanGame game) {
         playfield = new Playfield(
-                                getAppearance().getSourceImage(),
+                                getAppearance().getSourceImage(), mPlayFieldBg, 
                                 game);
         playfield.init();
         playfield.setParent(this);
