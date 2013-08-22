@@ -1,6 +1,7 @@
 package jp.or.iidukat.example.pacman.entity;
 
 import jp.or.iidukat.example.pacman.Direction;
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -24,8 +25,8 @@ public abstract class Actor extends BaseEntity {
         Appearance a = getAppearance();
         a.setWidth(16);
         a.setHeight(16);
-        a.setTopOffset(-4);
-        a.setLeftOffset(-4);
+        a.setTopOffset(-4); // 
+        a.setLeftOffset(-2); //TODO why is -2 not -4, because of PacmanConfig.sDot_left=2 ?.
         a.prepareBkPos(0, 0);
         a.setOrder(DEFAULT_DISPLAY_ORDER);
 

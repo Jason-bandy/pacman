@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -15,6 +17,8 @@ abstract class BaseEntity implements Entity {
     private final Appearance appearance;
     private final List<Entity> children;
     private Entity parent;
+    
+//    protected boolean isNeedDensity;
 
     BaseEntity(Bitmap sourceImage) {
         this(sourceImage, false);
@@ -367,6 +371,7 @@ abstract class BaseEntity implements Entity {
                 Math.round(adjustedBgPos[0]),
                 Math.round(adjustedBgPos[1] + adjustedSize[1]),
                 Math.round(adjustedBgPos[0] + adjustedSize[0]));
+            
             dest.set(
                     adjustedPos[1],
                     adjustedPos[0],
@@ -381,6 +386,10 @@ abstract class BaseEntity implements Entity {
                 return;
             }
             
+           /* if (isNeedDensity) {
+            	canvas.drawBitmap(PacmanConfig.sDotsBitmap, adjustedPos[1]/1.5f, adjustedPos[0]/1.5f,  null);
+            	return;
+            } else */
             dest.set(
                     adjustedPos[1],
                     adjustedPos[0],

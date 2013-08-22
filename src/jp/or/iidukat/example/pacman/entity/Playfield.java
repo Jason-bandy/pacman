@@ -15,6 +15,8 @@ import jp.or.iidukat.example.pacman.entity.BaseEntity.AppearanceImpl;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement.Dot;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.FloatMath;
 import android.util.Log;
 
@@ -32,10 +34,11 @@ public class Playfield extends BaseEntity {
         }
 
         private Path(int x, int y, int w, int h, boolean tunnel) {
-            this.x = x;
-            this.y = y;
-            this.w = w;
-            this.h = h;
+            float density = PacmanConfig.sDensity;
+			this.x = (int) (x/density) ;
+            this.y = (int) (y/density);
+            this.w = (int) (w/density);
+            this.h = (int) (h/density);
             this.tunnel = tunnel;
         }
 
@@ -152,7 +155,7 @@ public class Playfield extends BaseEntity {
     };
 
     // warp tunnel
-    static final Position[] TUNNEL_POS = {
+    static final Position[] TUNNEL_POS = { //TODO what' mean 2, 63
         new Position(2, PacmanConfig.sStepWidth),
         new Position(63, PacmanConfig.sStepWidth),
     };
@@ -228,6 +231,7 @@ public class Playfield extends BaseEntity {
                     && allowedDirs.contains(dir.getOpposite())
                     && allowedDirs.size() == 1;
         }
+
     }
     
     private final PacmanGame game;
@@ -270,10 +274,10 @@ public class Playfield extends BaseEntity {
         a.setHeight(PacmanConfig.sBgPlayHeight);
         a.setOrder(99);
         mAppearance = new BaseEntity.AppearanceImpl(bg);
-        mAppearance.setTop(18);
+        mAppearance.setTop(0);
         mAppearance.setLeft(0);
-        mAppearance.setWidth(PacmanConfig.sBgPlayWidth);
-        mAppearance.setHeight(PacmanConfig.sBgPlayHeight);
+        mAppearance.setWidth(800);
+        mAppearance.setHeight(480);
         mAppearance.setTargetHeight(800);
         mAppearance.setTargetWidth(480);
         mAppearance.setOrder(99);
@@ -650,7 +654,11 @@ public class Playfield extends BaseEntity {
 
     @Override
     void doDraw(Canvas canvas) {
-    	mAppearance.drawBitmap(canvas);
+//    	mAppearance.drawBitmap(canvas);
+    	canvas.drawBitmap(bg, 0, 0, null);
+    	/*Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
+		Rect dst = new Rect(0, 0, 480, 720);
+		canvas.drawBitmap(bg, src, dst, null);*/
     }
     
     public Pacman getPacman() {
@@ -727,7 +735,7 @@ public class Playfield extends BaseEntity {
             super(sourceImage);
         }
 
-        void init(int x, int y) {
+		void init(int x, int y) {
             Appearance a = getAppearance();
             a.setLeft(x + PacmanConfig.sDots_left);
             a.setTop(y + PacmanConfig.sDots_top);
@@ -758,12 +766,13 @@ public class Playfield extends BaseEntity {
         void init(int x, int y) {
             super.init(x, y);
             Appearance a = getAppearance();
-            a.setLeftOffset(3);
+            a.setLeftOffset(3); //TODO FOOD LEFT TOP (3, 3) NEED REVISE
             a.setTopOffset(3);
             a.setWidth(2);
             a.setHeight(2);
             a.setBgColor(0xf8b090);
             a.setOrder(100);
+//            this.isNeedDensity = true; //TODO  draw dots
         }
 
         @Override
@@ -854,8 +863,8 @@ public class Playfield extends BaseEntity {
             Appearance a = getAppearance();
             a.setWidth(48);
             a.setHeight(PacmanConfig.sStepWidth);
-            a.setLeft(264);
-            a.setTop(80);
+            a.setLeft(PacmanConfig.sBgPlayWidth/2 - 24);
+            a.setTop((PacmanConfig.sBgPlayHeight-PacmanConfig.sStepWidth)>>1);
             a.prepareBkPos(160, 0);
             a.setOrder(120);
         }
@@ -876,8 +885,8 @@ public class Playfield extends BaseEntity {
             Appearance a = getAppearance();
             a.setWidth(80);
             a.setHeight(PacmanConfig.sStepWidth);
-            a.setLeft(248);
-            a.setTop(80);
+            a.setLeft(PacmanConfig.sBgViewWidth>>1 - 24);
+            a.setTop((PacmanConfig.sBgPlayHeight-PacmanConfig.sStepWidth)>>1);
             a.prepareBkPos(PacmanConfig.sStepWidth, 152);
             a.setOrder(120);
         }

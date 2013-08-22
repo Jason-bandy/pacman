@@ -2127,6 +2127,6 @@ public class PacmanGame {
     }
 
     public static float getFieldY(float y) {
-        return y + 0;
+        return y + PacmanConfig.sDots_top;
     }
 }

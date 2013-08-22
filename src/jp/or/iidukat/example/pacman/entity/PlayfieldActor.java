@@ -83,13 +83,13 @@ public abstract class PlayfieldActor extends Actor {
     // be invoked when the difference between tilePos and pos is significant.
     final void enteringTile(int[] tilePos) {
         game.setTilesChanged(true);
-        Log.d(TAG, "PlayfieldActor entering Tile " + tilePos[0] + " , " + tilePos[1]);
         adjustPosOnEnteringTile(tilePos);
         reverseOnEnteringTile();
 
         this.lastGoodTilePos = new int[] { tilePos[0], tilePos[1] };
 
-        Log.d(TAG, "PlayfieldActor entering Tile " + tilePos[0] + " , " + tilePos[1]);
+//        Log.d(TAG, "PlayfieldActor----------- " + this.getClass()  + " entering Tile " + tilePos[0] + " , " + tilePos[1] );
+//        Log.d(TAG, "PlayfieldActor entering Tile " + tilePos[0] + " , " + tilePos[1]);
         // passing the tunnel(currentSpeed:2) or the others(currentSpeed:0)
         if (game.getPathElement(tilePos[1], tilePos[0]).isTunnel()) {
             if (canChangeSpeedInTunnel()) {
@@ -114,7 +114,7 @@ public abstract class PlayfieldActor extends Actor {
     
     // be invoked when pos's value is equal to tilePos (pos is a multiple of PacmanConfig.sStepWidth)
     final void enteredTile() {
-        warpIfPossible();
+//        warpIfPossible();
         handleAnObjectWhenEncountering();
         decideNextDirOnEnteredTile(); 
         PathElement p =
@@ -142,7 +142,7 @@ public abstract class PlayfieldActor extends Actor {
     abstract void decideNextDirOnEnteredTile(); 
     abstract void shortcutCorner();
 
-    final void warpIfPossible() {
+    final void warpIfPossible() {//TODO what' mean
         if (this.pos[0] == Playfield.TUNNEL_POS[0].getY() * PacmanConfig.sStepWidth
                 && this.pos[1] == Playfield.TUNNEL_POS[0].getX() * PacmanConfig.sStepWidth) { // warp from left to right
             this.pos[0] = Playfield.TUNNEL_POS[1].getY() * PacmanConfig.sStepWidth;
