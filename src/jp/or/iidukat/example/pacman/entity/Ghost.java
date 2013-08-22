@@ -81,7 +81,6 @@ public abstract class Ghost extends PlayfieldActor {
     public final void switchGhostMode(GhostMode mode) {
         GhostMode oldMode = this.mode;
         this.mode = mode;
-        Log.d(TAG, "switchGhostMode " + mode);
         /*if (true){
         	throw new RuntimeException();
         }*/
@@ -162,7 +161,6 @@ public abstract class Ghost extends PlayfieldActor {
 
     private void decideNextDir(boolean reversed) {
         int[] currentTilePos = tilePos;
-        Log.d(TAG, "decideNextDir " + currentTilePos[0] + " " + currentTilePos[1]);
         Move currentMove = dir.getMove();
         int[] newTilePos = new int[] {currentTilePos[0], currentTilePos[1]};
         newTilePos[currentMove.getAxis()] += currentMove.getIncrement() * PacmanConfig.sStepWidth; // anticipate the next tile by the direction of the progress
@@ -234,7 +232,6 @@ public abstract class Ghost extends PlayfieldActor {
     // when the ghost stays in the pen or goes out of the pen, manage its behaviors
     private void switchFollowingRoutine() {
         this.routineMoveId++;
-        Log.d(TAG, this.getClass() + "switchFollowingRoutine " + routineMoveId);
         if (this.routineMoveId == getMovesInPen().length) { // the end of the routine
             if (this.mode == GhostMode.IN_PEN && this.freeToLeavePen
                     && !game.isGhostExitingPenNow()) { // the conditions of going out are met
@@ -487,7 +484,6 @@ public abstract class Ghost extends PlayfieldActor {
                 if (this.mode == GhostMode.ENTERING_PEN) this.followRoutine();
             } else {
                 this.step();
-                Log.d(TAG, " step one " );
                 if (this.mode == GhostMode.EATEN) this.step();
             }
         }

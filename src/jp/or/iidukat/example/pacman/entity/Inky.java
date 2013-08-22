@@ -13,7 +13,7 @@ import android.graphics.Bitmap;
 public class Inky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(12f, 13, Direction.LEFT, 57, 20);
+        InitPosition.createGhostInitPosition(17f, 13, Direction.RIGHT, 57, 20);
 
     // movements of Inky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;

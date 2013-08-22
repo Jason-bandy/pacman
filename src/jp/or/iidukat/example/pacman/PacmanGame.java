@@ -1875,7 +1875,7 @@ public class PacmanGame {
             BitmapFactory.decodeResource(
                 context.getResources(),
                 PacmanConfig.sBg_res);
-        
+        PacmanConfig.sDensity = context.getResources().getDisplayMetrics().density;
         mPlayFieldBg = BitmapFactory.decodeResource(context.getResources(), R.drawable.chidoudou);
         createCanvasElement();
         speedIntervals = new HashMap<Float, Boolean[]>();

@@ -13,7 +13,7 @@ import android.util.Log;
 public class Pacman extends PlayfieldActor {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createPlayerInitPosition(12.5f, 2, Direction.UP);
+        InitPosition.createPlayerInitPosition(20f, 2, Direction.RIGHT);
 
 	private static final String TAG = "Pacman";
 
@@ -30,7 +30,7 @@ public class Pacman extends PlayfieldActor {
         InitPosition p = getInitPosition();
         this.pos = new float[] { p.y * PacmanConfig.sStepWidth, p.x * PacmanConfig.sStepWidth };
         this.posDelta = new float[] { 0, 0 };
-        this.tilePos = new int[] { (int) p.y * PacmanConfig.sStepWidth, (int) p.x * PacmanConfig.sStepWidth };
+        this.tilePos = new int[] {  (int) (p.y * PacmanConfig.sStepWidth),  (int) (p.x * PacmanConfig.sStepWidth) };
         this.lastActiveDir = this.dir = p.dir;
         this.physicalSpeed = 0;
         this.requestedDir = this.nextDir = Direction.NONE;
@@ -65,7 +65,6 @@ public class Pacman extends PlayfieldActor {
                 this.requestedDir = Direction.NONE;
             }
 
-            Log.d(TAG, "Pacman move step ");
             this.step();
         }
     }

@@ -172,7 +172,6 @@ public abstract class PlayfieldActor extends Actor {
 
         Move mv = this.dir.getMove();
         this.pos[mv.getAxis()] += mv.getIncrement();
-        Log.d(TAG, "step pos " + pos[0] + " , " + pos[1]);
         float imaginaryTileY = this.pos[0] / PacmanConfig.sStepWidth;
         float imaginaryTileX = this.pos[1] / PacmanConfig.sStepWidth;
         int[] nextTile = { Math.round(imaginaryTileY) * PacmanConfig.sStepWidth,

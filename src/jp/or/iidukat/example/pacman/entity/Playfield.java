@@ -34,11 +34,10 @@ public class Playfield extends BaseEntity {
         }
 
         private Path(int x, int y, int w, int h, boolean tunnel) {
-            float density = PacmanConfig.sDensity;
-			this.x = (int) (x/density) ;
-            this.y = (int) (y/density);
-            this.w = (int) (w/density);
-            this.h = (int) (h/density);
+			this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
             this.tunnel = tunnel;
         }
 
@@ -65,17 +64,20 @@ public class Playfield extends BaseEntity {
     // upper left:(5, 1), lower left:(5, 15),
     // upper right:(60, 1), lower right:(60, 15).
     private static final Path[] PATHS = {
-    	Path.createHorizontalPath(2, 2, PacmanConfig.sWidthPE),
-    	Path.createHorizontalPath(10, 1+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
-    	Path.createHorizontalPath(10, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
-    	Path.createHorizontalPath(2, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, PacmanConfig.sWidthPE),
+    	Path.createHorizontalPath(2, 2, PacmanConfig.sWidthPE-1),
+    	Path.createHorizontalPath(10, 2+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE+2),
+    	Path.createHorizontalPath(14, 2+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE-1, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(2, 2+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 8),
+    	Path.createHorizontalPath(13, 2+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 9),
+    	Path.createHorizontalPath(2, PacmanConfig.sHeightPE, PacmanConfig.sWidthPE-1),
     	
     	
-    	Path.createVerticalPath(2, 2, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
+    	Path.createVerticalPath(2, 2, PacmanConfig.sHeightPE -1),
     	Path.createVerticalPath(6, 2, 2 + 2*PacmanConfig.sLinePE),
-    	Path.createVerticalPath(10, 2, + 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
-    	Path.createVerticalPath(18, 2, PacmanConfig.sHeightPE),
-        Path.createVerticalPath(18, 2, PacmanConfig.sHeightPE),
+    	Path.createVerticalPath(10, 2, -1 + PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
+    	Path.createVerticalPath(13, 2, -1 + PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
+    	Path.createVerticalPath(21, 2, PacmanConfig.sHeightPE - 1),
+//        Path.createVerticalPath(18, 2, PacmanConfig.sHeightPE),
         /*Path.createVerticalPath(6, 1, 4),
         Path.createVerticalPath(10, 1, 10),
         Path.createVerticalPath(12, 1, 10),*/
@@ -314,7 +316,6 @@ public class Playfield extends BaseEntity {
 
     private void preparePlayfield() {
         playfield = new HashMap<Integer, Map<Integer, PathElement>>();
-        Log.d(TAG, "preparePlayfield width " + playfieldWidth + " height " + playfieldHeight);
         for (int y = 0; y <= playfieldHeight + 1; y++) {
             Map<Integer, PathElement> row = new HashMap<Integer, PathElement>();
             for (int x = -2; x <= playfieldWidth + 1; x++) {
@@ -333,7 +334,6 @@ public class Playfield extends BaseEntity {
             if (p.w > 0) {
                 int y = p.y * PacmanConfig.sStepWidth;
                 for (int x = p.x * PacmanConfig.sStepWidth; x <= (p.x + p.w - 1) * PacmanConfig.sStepWidth; x += PacmanConfig.sStepWidth) {
-                	Log.d(TAG, "play path " + p.x + " , " + p.y + " width " + p.w);
                     PathElement pe = playfield.get(Integer.valueOf(y)).get(Integer.valueOf(x));
                     pe.setPath(true);
                     if (pe.getDot() == Dot.NONE) {
@@ -885,7 +885,7 @@ public class Playfield extends BaseEntity {
             Appearance a = getAppearance();
             a.setWidth(80);
             a.setHeight(PacmanConfig.sStepWidth);
-            a.setLeft(PacmanConfig.sBgViewWidth>>1 - 24);
+            a.setLeft(PacmanConfig.sBgPlayWidth/2 - 40);
             a.setTop((PacmanConfig.sBgPlayHeight-PacmanConfig.sStepWidth)>>1);
             a.prepareBkPos(PacmanConfig.sStepWidth, 152);
             a.setOrder(120);
