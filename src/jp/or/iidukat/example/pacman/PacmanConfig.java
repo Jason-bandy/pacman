@@ -10,7 +10,7 @@ public class PacmanConfig {
 	public final static int sBgPlayWidth = (int) (480/sDensity);//464;
 	public final static int sBgPlayHeight = (int) (800/sDensity);//136;
 	
-	public final static int sStepWidth = (int) (20/sDensity);//TODO density value instead of 1.5f
+	public final static int sStepWidth = 13;//(int) (21/sDensity);//TODO density value instead of 1.5f
 	public static final int sBg_res = R.drawable.pacman_m4399_3;
 	public static final int sBgTranslateX = 0;//246;
 	public static final int sWordHPE = 6;
@@ -23,7 +23,7 @@ public class PacmanConfig {
 	
 	public static final float sPenPosX = 6f;
 	public static final float sPenPosY = 13;
-	public static final int sDots_left = (int) (10/1.5);
+	public static final int sDots_left = 0;//(int) (10/1.5);
 	public static final int sDots_top = -10;
 	public static Bitmap sDotsBitmap = null;
 	

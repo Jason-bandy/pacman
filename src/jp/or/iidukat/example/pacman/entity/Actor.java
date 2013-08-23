@@ -25,8 +25,8 @@ public abstract class Actor extends BaseEntity {
         Appearance a = getAppearance();
         a.setWidth(16);
         a.setHeight(16);
-        a.setTopOffset(-4); // 
-        a.setLeftOffset(-2); //TODO why is -2 not -4, because of PacmanConfig.sDot_left=2 ?.
+        a.setTopOffset(-5); // 
+        a.setLeftOffset(-4); //TODO why is -2 not -4, because of PacmanConfig.sDot_left=2 ?.
         a.prepareBkPos(0, 0);
         a.setOrder(DEFAULT_DISPLAY_ORDER);
 

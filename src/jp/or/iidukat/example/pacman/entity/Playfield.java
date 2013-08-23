@@ -15,6 +15,7 @@ import jp.or.iidukat.example.pacman.entity.BaseEntity.AppearanceImpl;
 import jp.or.iidukat.example.pacman.entity.Playfield.PathElement.Dot;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.FloatMath;
@@ -66,7 +67,7 @@ public class Playfield extends BaseEntity {
     private static final Path[] PATHS = {
     	Path.createHorizontalPath(2, 2, PacmanConfig.sWidthPE-1),
     	Path.createHorizontalPath(10, 2+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE+2),
-    	Path.createHorizontalPath(14, 2+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE-1, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(13, 2+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE-1, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
     	Path.createHorizontalPath(2, 2+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 8),
     	Path.createHorizontalPath(13, 2+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 9),
     	Path.createHorizontalPath(2, PacmanConfig.sHeightPE, PacmanConfig.sWidthPE-1),
@@ -609,6 +610,8 @@ public class Playfield extends BaseEntity {
 
     private int killScreenTileX;
     private int killScreenTileY;
+
+	private Matrix matrix = new Matrix();
     
     public void killScreen() {
         createKillScreenElement(272, 0, 200, 80, false);
@@ -654,8 +657,17 @@ public class Playfield extends BaseEntity {
 
     @Override
     void doDraw(Canvas canvas) {
-//    	mAppearance.drawBitmap(canvas);
+    	float sy = 13.0f/13.33333333f;
+//		float sx = sy;
+		
+		//    	mAppearance.drawBitmap(canvas);
+		/*canvas.save();
+    	canvas.scale(sy, sy);
     	canvas.drawBitmap(bg, 0, 0, null);
+    	canvas.restore();*/
+    	matrix.reset();
+    	matrix.postScale(sy, sy);
+		canvas.drawBitmap(bg, matrix, null);
     	/*Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
 		Rect dst = new Rect(0, 0, 480, 720);
 		canvas.drawBitmap(bg, src, dst, null);*/
