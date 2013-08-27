@@ -19,7 +19,7 @@
                       android:normalScreens="true"
                       android:largeScreens="false"
                       android:xlargeScreens="false"
-                      android:anyDensity="false" />
+                      android:anyDensity="true" />
     <uses-configuration android:reqTouchScreen="finger" />
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="9"/>
 </manifest>

@@ -32,6 +32,7 @@ import jp.or.iidukat.example.pacman.entity.Sound;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 import android.util.FloatMath;
 import android.view.MotionEvent;
 
@@ -1875,16 +1876,18 @@ public class PacmanGame {
             BitmapFactory.decodeResource(
                 context.getResources(),
                 PacmanConfig.sBg_res);
-        PacmanConfig.sDensity = context.getResources().getDisplayMetrics().density;
         mPlayFieldBg = BitmapFactory.decodeResource(context.getResources(), R.drawable.chidoudou);
         createCanvasElement();
         speedIntervals = new HashMap<Float, Boolean[]>();
         fpsChoice = 0;
         canDecreaseFps = true;
+        
+//        initDisplayParameter();
         initializeTickTimer();
     }
     
-    void resume() {
+
+	void resume() {
         prepareSound();
         if (started && paused) {
             lastTime += new Date().getTime() - pausedTime;
