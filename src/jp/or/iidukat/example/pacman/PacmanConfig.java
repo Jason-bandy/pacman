@@ -24,7 +24,7 @@ public class PacmanConfig {
 	public static final float sPenPosX = 6f;
 	public static final float sPenPosY = 13;
 	public static final int sDots_left = 0;//(int) (10/1.5);
-	public static final int sDots_top = -10;
+	public static final int sDots_top = -13;
 	public static Bitmap sDotsBitmap = null;
 	
 	
