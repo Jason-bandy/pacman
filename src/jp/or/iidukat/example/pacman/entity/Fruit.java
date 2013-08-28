@@ -26,7 +26,7 @@ public class Fruit extends BaseEntity {
         a.setTop(PacmanGame.getFieldY(y));
         a.setLeftOffset(-8);
         a.setTopOffset(-4);
-        a.prepareBkPos(PacmanConfig.sDots_left, PacmanConfig.sDots_top-16);//TODO -16 is 
+        a.prepareBkPos(PacmanConfig.sBorderLeft, PacmanConfig.sBorderTop-16);//TODO -16 is 
         a.setOrder(105);
     }
     

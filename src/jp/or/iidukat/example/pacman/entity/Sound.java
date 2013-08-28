@@ -16,7 +16,7 @@ public class Sound extends BaseEntity {
         a.setTop(156);
         a.setWidth(12);
         a.setHeight(12);
-        a.prepareBkPos(PacmanConfig.sDots_left, PacmanConfig.sDots_top-16);
+        a.prepareBkPos(PacmanConfig.sBorderLeft, PacmanConfig.sBorderTop-16);
     }
 
     //TODO turn on and turn off change position.

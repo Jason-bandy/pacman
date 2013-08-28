@@ -14,7 +14,7 @@ public class Blinky extends Ghost {
 
     private static final InitPosition INIT_POS =
 //        InitPosition.createGhostInitPosition(2.5f, 2, Direction.RIGHT, 57, -4);
-    		InitPosition.createGhostInitPosition(6f, 13, Direction.LEFT, 0, 0);
+    		InitPosition.createGhostInitPosition(6f, 12, Direction.LEFT, 0, 0);
 
     // movements of Blinky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;

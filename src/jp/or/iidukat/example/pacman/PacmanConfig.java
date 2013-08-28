@@ -23,10 +23,11 @@ public class PacmanConfig {
 	
 	public static final float sPenPosX = 6f;
 	public static final float sPenPosY = 13;
-	public static final int sDots_left = 30;//(int) (10/1.5);
-	public static final int sDots_top = -13;
+	public static final int sDots_left = 30-5;//(int) (10/1.5);
+	public static final int sDots_top = 30;
 	public static final int sToolBarHeight = 50;
-	public static final int sBorderLeft = 30;
+	public static final int sBorderLeft = 30-5;
+	public static final int sBorderTop = 30-16;
 	public static Bitmap sDotsBitmap = null;
 	public static float sStepWidthF;
 	

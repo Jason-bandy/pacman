@@ -68,13 +68,13 @@ public class GooglePacman extends Activity implements OnClickListener {
          getWindowManager().getDefaultDisplay().getMetrics(metric);
          int width = metric.widthPixels;  // 屏幕宽度（像素）
          int height = metric.heightPixels;  // 屏幕高度（像素）
-         float hDivw = height/width;
+         float hDivw = (float)height/width;
          final float density = metric.density;
          final int densitydpi = metric.densityDpi;
          PacmanConfig.sDensity = density;
          final int sw = width;
          int elementWidth;
-		if (hDivw > 1.566||true){// 1.667 = 800/480;
+		if (hDivw > 1.66){// 1.667 = 800/480;
         	 
         	 PacmanConfig.sBgPlayWidth = (int) (sw);
         	 PacmanConfig.sBgViewWidth = (int) (PacmanConfig.sBgPlayWidth);
@@ -89,7 +89,7 @@ public class GooglePacman extends Activity implements OnClickListener {
         	 PacmanConfig.sBgPlayHeight = height;
          	PacmanConfig.sBgViewHeight = height;
         	 
-        	 elementWidth = (height - PacmanConfig.sToolBarHeight)/PacmanConfig.sHeightPE;
+        	 elementWidth = (height - PacmanConfig.sBorderTop)/PacmanConfig.sHeightPE;
         	 
         	 PacmanConfig.sBgPlayWidth = width;
         	 PacmanConfig.sBgViewWidth = elementWidth*(PacmanConfig.sWidthPE+2);
