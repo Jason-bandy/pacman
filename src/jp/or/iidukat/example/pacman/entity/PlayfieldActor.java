@@ -114,7 +114,7 @@ public abstract class PlayfieldActor extends Actor {
     
     // be invoked when pos's value is equal to tilePos (pos is a multiple of PacmanConfig.sStepWidth)
     final void enteredTile() {
-//        warpIfPossible();
+        warpIfPossible();
         handleAnObjectWhenEncountering();
         decideNextDirOnEnteredTile(); 
         PathElement p =

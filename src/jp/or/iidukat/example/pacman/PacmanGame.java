@@ -1,5 +1,6 @@
 package jp.or.iidukat.example.pacman;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -986,6 +987,7 @@ public class PacmanGame {
         for (int i = 2; i < 4; i++) {
 //            getGhosts()[i].switchGhostMode(GhostMode.IN_PEN);
         }
+//        getGhosts()[3].switchGhostMode(GhostMode.IN_PEN);
         dotEatingChannel = 0;
         dotEatingSoundPart = 1;
 
@@ -1901,14 +1903,14 @@ public class PacmanGame {
         PacmanConfig.sDensity = density;
         final int sw = width;
         float elementWidth;
-        int statusBarHeight = 38;//TODO status bar height get.
-        Log.d(TAG, "bitmap bg width " + mPlayFieldBg.getWidth() + " height " + mPlayFieldBg.getHeight());
+        int statusBarHeight = getStatusBarHeight(context);//TODO status bar height get.
+        Log.d(TAG, "bitmap bg width " + mPlayFieldBg.getWidth() + " height " + mPlayFieldBg.getHeight() + " statusBarHeight " + statusBarHeight);
         if (hDivw > 1.66 || true){// 1.667 = 800/480;
 
 
         	elementWidth = (height-statusBarHeight)/(PacmanConfig.sHeightPE + 3.5f);
         	
-        	PacmanConfig.sBgPlayWidth = (int) (elementWidth*(PacmanConfig.sWidthPE+3f));
+        	PacmanConfig.sBgPlayWidth = sw;
         	PacmanConfig.sBgViewWidth = (int) (elementWidth*(PacmanConfig.sWidthPE));
 
         	PacmanConfig.sBgPlayHeight = height - statusBarHeight;
@@ -1916,8 +1918,8 @@ public class PacmanGame {
         	Log.d(TAG, "border width " + (sw-PacmanConfig.sBorderLeft));
         	Log.d(TAG, "element width " + elementWidth + " densitydpi " + densitydpi);
         	
-        	PacmanConfig.sBorderLeft = (int) (1.5f*elementWidth) - 5;
-        	PacmanConfig.sBorderTop = (int) (1.5f*elementWidth) ;
+        	PacmanConfig.sBorderLeft = (int) (1.5f*elementWidth)-PacmanConfig.sDots_left;
+        	PacmanConfig.sBorderTop = (int) (1.5f*elementWidth)-PacmanConfig.sDots_top + 5;//TODO why top no at right position?
 
         	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
         } else{
@@ -1938,7 +1940,26 @@ public class PacmanGame {
 		Log.d(TAG, "element width " + elementWidthByDpF );
 		PacmanConfig.sStepWidth = (int)elementWidthByDpF;
 		PacmanConfig.sStepWidthF = elementWidthByDpF;
+//		PacmanConfig.sScaleFactor *= ((int)(elementWidthByDpF))/elementWidthByDpF;
 	}
+    
+  //获取手机状态栏高度
+    public static int getStatusBarHeight(Context context){
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, statusBarHeight = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            statusBarHeight = context.getResources().getDimensionPixelSize(x);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        } 
+        return statusBarHeight;
+    }
     
 
 	void resume() {

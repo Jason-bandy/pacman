@@ -5,13 +5,13 @@ import android.graphics.Bitmap;
 public class PacmanConfig {
 	public static float sDensity = 1.5f; 
 	//TODO put the code into main instead of here. 
-	public static int sBgViewWidth = (int) (400/sDensity);//464;
-	public static int sBgViewHeight = (int) (600/sDensity);//168;
-	public static int sBgPlayWidth = (int) (480/sDensity);//464;
-	public static int sBgPlayHeight = (int) (800/sDensity);//136;
+	public static int sBgViewWidth ;//464;
+	public static int sBgViewHeight ;//168;
+	public static int sBgPlayWidth;//464;
+	public static int sBgPlayHeight ;//136;
 	
-	public static int sStepWidth = 13;//(int) (21/sDensity);//TODO density value instead of 1.5f
-	public static final int sBg_res = R.drawable.pacman_m4399_3;
+	public static int sStepWidth = 0;//(int) (21/sDensity);//TODO density value instead of 1.5f
+	public static final int sBg_res = R.drawable.pacman_sprite;
 	public static final int sBgTranslateX = 0;//246;
 	public static final int sWordHPE = 6;
 	public static final int sWordVPE = 9;
@@ -23,8 +23,8 @@ public class PacmanConfig {
 	
 	public static final float sPenPosX = 6f;
 	public static final float sPenPosY = 13;
-	public static final int sDots_left = 30-5;//(int) (10/1.5);
-	public static final int sDots_top = 30;
+	public static final int sDots_left = 1;//(int) (10/1.5);
+	public static final int sDots_top = 1;
 	public static final int sToolBarHeight = 50;
 	public static int sBorderLeft = 30-5;
 	public static int sBorderTop = 30-16;

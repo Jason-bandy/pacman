@@ -761,8 +761,8 @@ public class Playfield extends BaseEntity {
 
 		void init(int x, int y) {
             Appearance a = getAppearance();
-            a.setLeft(x + PacmanConfig.sBorderLeft);
-            a.setTop(y + PacmanConfig.sBorderTop);
+            a.setLeft(x + PacmanConfig.sBorderLeft+PacmanConfig.sDots_left);//TODO dots need to center.
+            a.setTop(y + PacmanConfig.sBorderTop + PacmanConfig.sDots_top);
         }
         
         @Override
@@ -790,8 +790,8 @@ public class Playfield extends BaseEntity {
         void init(int x, int y) {
             super.init(x, y);
             Appearance a = getAppearance();
-            a.setLeftOffset(3); //TODO FOOD LEFT TOP (3, 3) NEED REVISE
-            a.setTopOffset(3);
+            a.setLeftOffset(-1f); //TODO FOOD LEFT TOP (3, 3) NEED REVISE
+            a.setTopOffset(-1f);
             a.setWidth(2);
             a.setHeight(2);
             a.setBgColor(0xf8b090);
@@ -864,10 +864,10 @@ public class Playfield extends BaseEntity {
         
         void init() {
             Appearance a = getAppearance();
-            a.setWidth(19);
-            a.setHeight(2);
-            a.setLeft(279);
-            a.setTop(46);
+            a.setWidth(PacmanConfig.sStepWidth*2);
+            a.setHeight(PacmanConfig.sStepWidth>>1);
+            a.setLeft(PacmanConfig.sBorderLeft + (PacmanConfig.sLinePE + PacmanConfig.sWordHPE + 1) * PacmanConfig.sStepWidth);
+            a.setTop(5 + PacmanConfig.sBorderTop + (PacmanConfig.sLinePE*2 + PacmanConfig.sWordVPE + 3) * PacmanConfig.sStepWidth);
             a.setBgColor(0xffaaa5);
         }
         
