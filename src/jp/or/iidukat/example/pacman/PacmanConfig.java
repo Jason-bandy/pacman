@@ -26,10 +26,13 @@ public class PacmanConfig {
 	public static final int sDots_left = 30-5;//(int) (10/1.5);
 	public static final int sDots_top = 30;
 	public static final int sToolBarHeight = 50;
-	public static final int sBorderLeft = 30-5;
-	public static final int sBorderTop = 30-16;
+	public static int sBorderLeft = 30-5;
+	public static int sBorderTop = 30-16;
 	public static Bitmap sDotsBitmap = null;
 	public static float sStepWidthF;
+	public static float sScaleFactor;
+	public static int sDrawTx;
+	public static int sDrawTy;
 	
 	
 	

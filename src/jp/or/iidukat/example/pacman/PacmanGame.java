@@ -29,11 +29,13 @@ import jp.or.iidukat.example.pacman.entity.Playfield.PathElement.Dot;
 import jp.or.iidukat.example.pacman.entity.Score;
 import jp.or.iidukat.example.pacman.entity.ScoreLabel;
 import jp.or.iidukat.example.pacman.entity.Sound;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 import android.util.FloatMath;
+import android.util.Log;
 import android.view.MotionEvent;
 
 public class PacmanGame {
@@ -712,6 +714,8 @@ public class PacmanGame {
     }
 
     private static final Map<Integer, Cutscene> CUTSCENES;
+
+	private static final String TAG = "PacmanGame";
     static {
         Map<Integer, Cutscene> css = new HashMap<Integer, Cutscene>();
         css.put(
@@ -1882,9 +1886,59 @@ public class PacmanGame {
         fpsChoice = 0;
         canDecreaseFps = true;
         
-//        initDisplayParameter();
+        initDisplayParameter();
         initializeTickTimer();
     }
+    
+    private void initDisplayParameter() {
+    	DisplayMetrics metric = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metric);
+        int width = metric.widthPixels;  // 屏幕宽度（像素）
+        int height = metric.heightPixels;  // 屏幕高度（像素）
+        float hDivw = (float)height/width;
+        final float density = metric.density;
+        final int densitydpi = metric.densityDpi;
+        PacmanConfig.sDensity = density;
+        final int sw = width;
+        float elementWidth;
+        int statusBarHeight = 38;//TODO status bar height get.
+        Log.d(TAG, "bitmap bg width " + mPlayFieldBg.getWidth() + " height " + mPlayFieldBg.getHeight());
+        if (hDivw > 1.66 || true){// 1.667 = 800/480;
+
+
+        	elementWidth = (height-statusBarHeight)/(PacmanConfig.sHeightPE + 3.5f);
+        	
+        	PacmanConfig.sBgPlayWidth = (int) (elementWidth*(PacmanConfig.sWidthPE+3f));
+        	PacmanConfig.sBgViewWidth = (int) (elementWidth*(PacmanConfig.sWidthPE));
+
+        	PacmanConfig.sBgPlayHeight = height - statusBarHeight;
+        	PacmanConfig.sBgViewHeight = (int) (elementWidth*PacmanConfig.sHeightPE);
+        	Log.d(TAG, "border width " + (sw-PacmanConfig.sBorderLeft));
+        	Log.d(TAG, "element width " + elementWidth + " densitydpi " + densitydpi);
+        	
+        	PacmanConfig.sBorderLeft = (int) (1.5f*elementWidth) - 5;
+        	PacmanConfig.sBorderTop = (int) (1.5f*elementWidth) ;
+
+        	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
+        } else{
+        	PacmanConfig.sBgPlayHeight = height-statusBarHeight;
+        	PacmanConfig.sBgViewHeight = height-statusBarHeight;
+
+			elementWidth = PacmanConfig.sBgPlayHeight / (PacmanConfig.sHeightPE+3.5F); // 1.5+2 代表border top&bottom = (1.5+2) * elementWidth;
+
+        	PacmanConfig.sBgPlayWidth = width;
+        	PacmanConfig.sBgViewWidth = (int) (elementWidth*(PacmanConfig.sWidthPE+3f));
+
+        	PacmanConfig.sBorderLeft = (int) (1.5f*elementWidth) - 5;
+        	PacmanConfig.sBorderTop = (int) (1.5f*elementWidth) - 16;
+
+        	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
+        }
+		float elementWidthByDpF = elementWidth;
+		Log.d(TAG, "element width " + elementWidthByDpF );
+		PacmanConfig.sStepWidth = (int)elementWidthByDpF;
+		PacmanConfig.sStepWidthF = elementWidthByDpF;
+	}
     
 
 	void resume() {

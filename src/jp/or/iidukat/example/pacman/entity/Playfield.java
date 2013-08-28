@@ -287,7 +287,7 @@ public class Playfield extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setTop(18);
+        a.setTop(0);
         a.setLeft(0);
         a.setWidth(PacmanConfig.sBgPlayWidth);
         a.setHeight(PacmanConfig.sBgPlayHeight);
@@ -295,10 +295,10 @@ public class Playfield extends BaseEntity {
         mAppearance = new BaseEntity.AppearanceImpl(bg);
         mAppearance.setTop(0);
         mAppearance.setLeft(0);
-        mAppearance.setWidth(800);
-        mAppearance.setHeight(480);
-        mAppearance.setTargetHeight(800);
-        mAppearance.setTargetWidth(480);
+        mAppearance.setWidth(bg.getWidth());
+        mAppearance.setHeight(bg.getHeight());
+        mAppearance.setTargetHeight(PacmanConfig.sBgPlayWidth);
+        mAppearance.setTargetWidth(PacmanConfig.sBgPlayHeight);
         mAppearance.setOrder(99);
     }
 
@@ -673,14 +673,10 @@ public class Playfield extends BaseEntity {
 
     @Override
     void doDraw(Canvas canvas) {
-    	float sy = PacmanConfig.sStepWidth/PacmanConfig.sStepWidthF;
+    	float sy = PacmanConfig.sScaleFactor ;//(float)PacmanConfig.sBgViewWidth/PacmanConfig.sBgPlayWidth;
 //		float sx = sy;
 		
-		//    	mAppearance.drawBitmap(canvas);
-		/*canvas.save();
-    	canvas.scale(sy, sy);
-    	canvas.drawBitmap(bg, 0, 0, null);
-    	canvas.restore();*/
+//		    	mAppearance.drawBitmap(canvas);
     	matrix.reset();
     	matrix.postScale(sy, sy);
 		canvas.drawBitmap(bg, matrix, null);
