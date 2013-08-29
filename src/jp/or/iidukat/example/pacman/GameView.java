@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -14,7 +15,8 @@ public class GameView extends View {
     /*public static final int PacmanConfig.sBgPlayWidth = 401;
     public static final int PacmanConfig.sBgPlayHeight = 622;*/
     
-    private int canvasHeight = -1;
+    private static final String TAG = "GameView";
+	private int canvasHeight = -1;
     private int canvasWidth = -1;
 
     PacmanGame game;
@@ -45,6 +47,7 @@ public class GameView extends View {
     
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    	Log.d(TAG, "onsize changed " + w + " h " + h);
         canvasWidth = w > PacmanConfig.sBgPlayWidth ? w : PacmanConfig.sBgPlayWidth;
         canvasHeight = h > PacmanConfig.sBgPlayHeight ? h : PacmanConfig.sBgPlayHeight;
     }

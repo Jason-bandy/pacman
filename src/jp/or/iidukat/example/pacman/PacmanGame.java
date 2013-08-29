@@ -1882,7 +1882,7 @@ public class PacmanGame {
             BitmapFactory.decodeResource(
                 context.getResources(),
                 PacmanConfig.sBg_res);
-        mPlayFieldBg = BitmapFactory.decodeResource(context.getResources(), R.drawable.chidoudou);
+        mPlayFieldBg = BitmapFactory.decodeResource(context.getResources(), R.drawable.chidouren2);
         createCanvasElement();
         speedIntervals = new HashMap<Float, Boolean[]>();
         fpsChoice = 0;
@@ -1908,18 +1908,20 @@ public class PacmanGame {
         if (hDivw > 1.66 || true){// 1.667 = 800/480;
 
 
-        	elementWidth = (height-statusBarHeight)/(PacmanConfig.sHeightPE + 3.5f);
+        	elementWidth = (height-statusBarHeight)/(PacmanConfig.sHeightPE );
+        	
+        	elementWidth = (int)elementWidth;
         	
         	PacmanConfig.sBgPlayWidth = sw;
-        	PacmanConfig.sBgViewWidth = (int) (elementWidth*(PacmanConfig.sWidthPE));
+        	PacmanConfig.sBgViewWidth = (int) (elementWidth*(PacmanConfig.sWidthPE) + 10);
 
         	PacmanConfig.sBgPlayHeight = height - statusBarHeight;
-        	PacmanConfig.sBgViewHeight = (int) (elementWidth*PacmanConfig.sHeightPE);
+        	PacmanConfig.sBgViewHeight = (int) (elementWidth *(PacmanConfig.sHeightPE));
         	Log.d(TAG, "border width " + (sw-PacmanConfig.sBorderLeft));
         	Log.d(TAG, "element width " + elementWidth + " densitydpi " + densitydpi);
         	
-        	PacmanConfig.sBorderLeft = (int) (1.5f*elementWidth)-PacmanConfig.sDots_left;
-        	PacmanConfig.sBorderTop = (int) (1.5f*elementWidth)-PacmanConfig.sDots_top + 5;//TODO why top no at right position?
+        	PacmanConfig.sBorderLeft = 5-PacmanConfig.sDots_left;
+        	PacmanConfig.sBorderTop = 5-PacmanConfig.sDots_top ;//TODO why top no at right position?
 
         	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
         } else{

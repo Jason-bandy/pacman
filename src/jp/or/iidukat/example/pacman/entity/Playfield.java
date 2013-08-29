@@ -67,14 +67,14 @@ public class Playfield extends BaseEntity {
     private static final Path[] PATHS = {
     	Path.createHorizontalPath(1, 1, PacmanConfig.sWidthPE-1),
     	Path.createHorizontalPath(9, 1+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE+2),
-    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE-1, PacmanConfig.sWordHPE-PacmanConfig.sLinePE),
+    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE-1, PacmanConfig.sWordHPE-PacmanConfig.sLinePE+1),
     	Path.createHorizontalPath(1, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 8),
     	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 9),
     	Path.createHorizontalPath(1, PacmanConfig.sHeightPE-1, PacmanConfig.sWidthPE-1),
     	
     	//====================================//
-    	Path.createHorizontalPath(1, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 6),
-    	Path.createHorizontalPath(15, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 6),
+    	Path.createHorizontalPath(0, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 7),
+    	Path.createHorizontalPath(15, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 7),
     	Path.createHorizontalPath(1, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12, 9),
     	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12, 9),
     	
@@ -82,11 +82,20 @@ public class Playfield extends BaseEntity {
     	Path.createHorizontalPath(12, PacmanConfig.sHeightPE-4, 5), // 9
     	
     	
-    	Path.createVerticalPath(1, 1, PacmanConfig.sHeightPE -1),
+    	// 左边第一竖线
+    	Path.createVerticalPath(1, 1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
+    	Path.createVerticalPath(1, PacmanConfig.sHeightPE - (PacmanConfig.sWordVPE + PacmanConfig.sLinePE)-1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
+    	//第二竖线
+    	Path.createVerticalPath(3, 1 + PacmanConfig.sWordVPE + PacmanConfig.sLinePE, 12),
+
+    	//最后一个竖线
+    	Path.createVerticalPath(20, 1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
+    	Path.createVerticalPath(20, PacmanConfig.sHeightPE - (PacmanConfig.sWordVPE + PacmanConfig.sLinePE)-1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
+    	Path.createVerticalPath(18, 1 + PacmanConfig.sWordVPE + PacmanConfig.sLinePE, 12),
+    	
     	Path.createVerticalPath(5, 1, 2 + 2*PacmanConfig.sLinePE),
     	Path.createVerticalPath(9, 1, -1 + PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
     	Path.createVerticalPath(12, 1, -1 + PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
-    	Path.createVerticalPath(20, 1, PacmanConfig.sHeightPE - 1),
     	
     	//===============V=====================//
     	Path.createVerticalPath(6, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 13),
@@ -166,11 +175,11 @@ public class Playfield extends BaseEntity {
     }
 
     private static final Position[] ENERGIZER_POSITIONS = {
-        /*new Position(5, 15),
-        new Position(5, 3),
-        new Position(15, PacmanConfig.sStepWidth),
-        new Position(60, 3),
-        new Position(60, 15),*/
+        new Position(5, 6),
+        new Position(5, PacmanConfig.sHeightPE-4),
+        new Position(16, 8),
+        new Position(16, PacmanConfig.sHeightPE-4),
+        new Position(9, 12),
     };
 
     // warp tunnel

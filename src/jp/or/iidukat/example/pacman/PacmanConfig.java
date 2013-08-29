@@ -26,8 +26,8 @@ public class PacmanConfig {
 	public static final int sDots_left = 1;//(int) (10/1.5);
 	public static final int sDots_top = 1;
 	public static final int sToolBarHeight = 50;
-	public static int sBorderLeft = 30-5;
-	public static int sBorderTop = 30-16;
+	public static int sBorderLeft ;
+	public static int sBorderTop ;
 	public static Bitmap sDotsBitmap = null;
 	public static float sStepWidthF;
 	public static float sScaleFactor;
