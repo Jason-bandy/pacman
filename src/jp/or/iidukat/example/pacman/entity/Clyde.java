@@ -22,27 +22,27 @@ public class Clyde extends Ghost {
         m.put(
             GhostMode.IN_PEN,
             new MoveInPen[] {
-                new MoveInPen(9, 17, Direction.UP, 6.375f, 0.48f),
-                new MoveInPen(9, 16, Direction.DOWN, 7.625f, 0.48f),
-                new MoveInPen(9, 17, Direction.UP, 7, 0.48f),
+                new MoveInPen(9, 17, Direction.UP, 16, 0.48f),
+                new MoveInPen(9, 16, Direction.DOWN, 18f, 0.48f),
+                new MoveInPen(9, 18, Direction.UP, 17, 0.48f),
               });
         m.put(
             GhostMode.LEAVING_PEN,
             new MoveInPen[] {
-                new MoveInPen(9, 17, Direction.RIGHT, 39.5f, LEAVING_PEN_SPEED),
-                new MoveInPen(10, 17, Direction.UP, 4, LEAVING_PEN_SPEED),
+                new MoveInPen(9, 18, Direction.RIGHT, 10f, LEAVING_PEN_SPEED),
+                new MoveInPen(10, 18, Direction.UP, 4, LEAVING_PEN_SPEED),
             });
         m.put(
             GhostMode.ENTERING_PEN,
             new MoveInPen[] {
-                new MoveInPen(10, 16, Direction.DOWN, 7, 1.6f),
-                new MoveInPen(10, 17, Direction.LEFT, 41.375f, 1.6f),
+                new MoveInPen(10, 17, Direction.DOWN, 18, 1.6f),
+                new MoveInPen(10, 18, Direction.LEFT, 9f, 1.6f),
             });
         m.put(
             GhostMode.RE_LEAVING_FROM_PEN,
             new MoveInPen[] {
-                new MoveInPen(9f, 16, Direction.RIGHT, 39.5f, LEAVING_PEN_SPEED),
-                new MoveInPen(10f, 16, Direction.UP, 4, LEAVING_PEN_SPEED),
+            	new MoveInPen(9, 18, Direction.RIGHT, 10f, LEAVING_PEN_SPEED),
+            	new MoveInPen(10, 18, Direction.UP, 4, LEAVING_PEN_SPEED),
             });
         MOVES_IN_PEN = Collections.unmodifiableMap(m);
     }

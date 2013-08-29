@@ -82,6 +82,7 @@ public class Playfield extends BaseEntity {
     	Path.createHorizontalPath(12, PacmanConfig.sHeightPE-4, 5), // 9
     	
     	
+    	
     	// 左边第一竖线
     	Path.createVerticalPath(1, 1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
     	Path.createVerticalPath(1, PacmanConfig.sHeightPE - (PacmanConfig.sWordVPE + PacmanConfig.sLinePE)-1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
@@ -141,19 +142,21 @@ public class Playfield extends BaseEntity {
         Path.createVerticalPath(24, 12, 4),
         Path.createHorizontalPath(24, 15, 12),
         Path.createVerticalPath(27, 4, 9),
-        Path.createHorizontalPath(52, 9, 5),
-        Path.createTunnelPath(56, PacmanConfig.sStepWidth, 10),
-        Path.createTunnelPath(1, PacmanConfig.sStepWidth, 9),*/
+        Path.createHorizontalPath(52, 9, 5),*/
+        Path.createTunnelPath(PacmanConfig.sWidthPE-5, 18, 5),
+        Path.createTunnelPath(0, PacmanConfig.sStepWidth, 5),
     };
 
     private static final Path[] PATHS_HAVING_NO_DOT = {
        /* Path.createHorizontalPath(1, PacmanConfig.sStepWidth, PacmanConfig.sStepWidth),
         Path.createHorizontalPath(57, PacmanConfig.sStepWidth, 9),
         Path.createVerticalPath(44, 2, 10),
-        Path.createVerticalPath(35, 5, 7),
-        Path.createHorizontalPath(36, 4, PacmanConfig.sStepWidth),
+        Path.createVerticalPath(35, 5, 7),*/
+       /* Path.createHorizontalPath(36, 4, PacmanConfig.sStepWidth),
         Path.createHorizontalPath(36, 10, PacmanConfig.sStepWidth),
         Path.createHorizontalPath(39, 15, 2),*/
+    	
+    	Path.createHorizontalPath(6, 15, 10), //幽灵nest out.
     };
 
     public static class Position {
@@ -188,8 +191,8 @@ public class Playfield extends BaseEntity {
         new Position(63, PacmanConfig.sStepWidth),
     };
 
-    static final int[] PEN_ENTRANCE = {6, 2}; // the entrance position of the ghost's nest
-    static final int[] FRUIT_POSITION = { 80, 312 };
+    static final int[] PEN_ENTRANCE = {10, 16}; // the entrance position of the ghost's nest
+    static final int[] FRUIT_POSITION = { PacmanConfig.sBgViewHeight, PacmanConfig.sBgViewWidth };
 
 	private static final String TAG = "Playfield";
 
@@ -824,8 +827,10 @@ public class Playfield extends BaseEntity {
         void init(int x, int y) {
             super.init(x, y);
             Appearance a = getAppearance();
-            a.setWidth(PacmanConfig.sStepWidth);
-            a.setHeight(PacmanConfig.sStepWidth);
+            a.setLeftOffset(-4);
+            a.setTopOffset(-4);
+            a.setWidth(8);
+            a.setHeight(8);
             a.prepareBkPos(0, 144);
             a.setOrder(101);
         }
@@ -917,10 +922,10 @@ public class Playfield extends BaseEntity {
         public void init() {
             Appearance a = getAppearance();
             a.setWidth(80);
-            a.setHeight(PacmanConfig.sStepWidth);
+            a.setHeight(8);
             a.setLeft(PacmanConfig.sBgPlayWidth/2 - 40);
             a.setTop((PacmanConfig.sBgPlayHeight-PacmanConfig.sStepWidth)>>1);
-            a.prepareBkPos(PacmanConfig.sStepWidth, 152);
+            a.prepareBkPos(8, 152);
             a.setOrder(120);
         }
 
