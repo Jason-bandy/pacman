@@ -3,6 +3,7 @@ package jp.or.iidukat.example.pacman.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
 import jp.or.iidukat.example.pacman.PacmanGame.LevelConfig;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,8 +18,8 @@ public class Level extends BaseEntity {
     
     public void init() {
         Appearance a = getAppearance();
-        a.setLeft(404);
-        a.setTop(152);
+        a.setLeft(PacmanConfig.sBgPlayWidth - 64);
+        a.setTop(PacmanConfig.sBgPlayHeight - 16);
         a.setHeight(16);
         a.setWidth(64);
     }

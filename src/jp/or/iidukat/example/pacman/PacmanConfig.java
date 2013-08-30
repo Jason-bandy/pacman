@@ -1,6 +1,7 @@
 package jp.or.iidukat.example.pacman;
 
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 
 public class PacmanConfig {
 	public static float sDensity = 1.5f; 
@@ -38,6 +39,12 @@ public class PacmanConfig {
 	public static int sActorLeftOffset;
 	public static int sCanvasTop;
 	public static int sCanvasLeft;
+	public static float sSpeedFactor = 1.5f;
+	public static int sBottomBarHeight;
+	public static int sBgBitmapHeight;
+	public static int sBgBitmapWidth;
+	public static Rect mPlayFiledBgSrc;
+	public static Rect mPlayFiledBgDst;
 	
 	
 	

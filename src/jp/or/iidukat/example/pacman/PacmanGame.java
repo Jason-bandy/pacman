@@ -216,17 +216,17 @@ public class PacmanGame {
         }
 
         private LevelConfig(Builder builder) {
-            this.ghostSpeed = builder.ghostSpeed;
-            this.ghostTunnelSpeed = builder.ghostTunnelSpeed;
-            this.playerSpeed = builder.playerSpeed;
-            this.dotEatingSpeed = builder.dotEatingSpeed;
-            this.ghostFrightSpeed = builder.ghostFrightSpeed;
-            this.playerFrightSpeed = builder.playerFrightSpeed;
-            this.dotEatingFrightSpeed = builder.dotEatingFrightSpeed;
+            this.ghostSpeed = builder.ghostSpeed*PacmanConfig.sSpeedFactor ;
+            this.ghostTunnelSpeed = builder.ghostTunnelSpeed*PacmanConfig.sSpeedFactor ;
+            this.playerSpeed = builder.playerSpeed*PacmanConfig.sSpeedFactor ;
+            this.dotEatingSpeed = builder.dotEatingSpeed*PacmanConfig.sSpeedFactor ;
+            this.ghostFrightSpeed = builder.ghostFrightSpeed*PacmanConfig.sSpeedFactor ;
+            this.playerFrightSpeed = builder.playerFrightSpeed*PacmanConfig.sSpeedFactor ;
+            this.dotEatingFrightSpeed = builder.dotEatingFrightSpeed*PacmanConfig.sSpeedFactor ;
             this.elroyDotsLeftPart1 = builder.elroyDotsLeftPart1;
-            this.elroySpeedPart1 = builder.elroySpeedPart1;
+            this.elroySpeedPart1 = builder.elroySpeedPart1*PacmanConfig.sSpeedFactor;
             this.elroyDotsLeftPart2 = builder.elroyDotsLeftPart2;
-            this.elroySpeedPart2 = builder.elroySpeedPart2;
+            this.elroySpeedPart2 = builder.elroySpeedPart2*PacmanConfig.sSpeedFactor;
             this.frightBlinkCount = builder.frightBlinkCount;
             this.fruit = builder.fruit;
             this.fruitScore = builder.fruitScore;
@@ -1905,11 +1905,18 @@ public class PacmanGame {
         float elementWidth;
         int statusBarHeight = getStatusBarHeight(context);//TODO status bar height get.
         Log.d(TAG, "bitmap bg width " + mPlayFieldBg.getWidth() + " height " + mPlayFieldBg.getHeight() + " statusBarHeight " + statusBarHeight);
+        
+        //save the bg bitmap width and height to static 
+        PacmanConfig.sBgBitmapHeight = mPlayFieldBg.getHeight();
+        PacmanConfig.sBgBitmapWidth = mPlayFieldBg.getWidth();
+        
         if (hDivw > 1.66 || true){// 1.667 = 800/480;
 
         	PacmanConfig.sToolBarHeight = (int) (12*density);
+        	PacmanConfig.sBottomBarHeight = (int) (12*density);
 
-        	elementWidth = (height-statusBarHeight - PacmanConfig.sToolBarHeight)/(PacmanConfig.sHeightPE+0.5f) ; // 0.5f = (5+5)/20 ; 就是游戏区域的边框大小占的stepWidth。
+        	elementWidth = (height-statusBarHeight - PacmanConfig.sToolBarHeight - PacmanConfig.sBottomBarHeight)
+        			/(PacmanConfig.sHeightPE+0.5f) ; // 0.5f = (5+5)/20 ; 就是游戏区域的边框大小占的stepWidth。
         	
         	float factor = (int)elementWidth/elementWidth; // 计算出来的stepWidth如果不是整数，就要计算下取整后相差的比例，然后地图背景也要缩放这个比例
         	Log.d(TAG, "elementWidth " + elementWidth + " factor " + factor);
@@ -1920,13 +1927,14 @@ public class PacmanGame {
         	PacmanConfig.sBgPlayHeight = (int) ((height - statusBarHeight) * factor);
         	PacmanConfig.sBgPlayWidth = PacmanConfig.sBgPlayHeight*mPlayFieldBg.getWidth()/mPlayFieldBg.getHeight();
         	
-        	PacmanConfig.sBgViewHeight = PacmanConfig.sBgPlayHeight - PacmanConfig.sToolBarHeight;
+        	PacmanConfig.sBgViewHeight = PacmanConfig.sBgPlayHeight - PacmanConfig.sToolBarHeight - PacmanConfig.sBottomBarHeight;
         	PacmanConfig.sBgViewWidth = PacmanConfig.sBgViewHeight*mPlayFieldBg.getWidth()/mPlayFieldBg.getHeight();
         	Log.d(TAG, "border width " + (sw-PacmanConfig.sBorderLeft));
         	Log.d(TAG, "element width " + elementWidth + " densitydpi " + densitydpi);
         	Log.d(TAG, " width height  " + PacmanConfig.sBgPlayWidth + " height " + PacmanConfig.sBgPlayHeight);
         	
         	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
+        	PacmanConfig.sSpeedFactor =  elementWidth/8;
 
         	PacmanConfig.sBorderLeft = (int) (0.25f*elementWidth-PacmanConfig.sDots_left);
         	PacmanConfig.sBorderTop = (int) (0.25f*elementWidth-PacmanConfig.sDots_top) + PacmanConfig.sToolBarHeight ;//TODO why top no at right position?

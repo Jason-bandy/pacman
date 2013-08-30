@@ -1,8 +1,10 @@
 package jp.or.iidukat.example.pacman;
 
 import jp.or.iidukat.example.pacman.entity.PacmanCanvas;
+import jp.or.iidukat.example.pacman.entity.Playfield;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -52,6 +54,13 @@ public class GameView extends View {
         PacmanConfig.sCanvasLeft = (canvasWidth - PacmanConfig.sBgPlayWidth) / 2;
         PacmanConfig.sCanvasTop = (canvasHeight - PacmanConfig.sBgPlayHeight) / 2;
         Log.d(TAG, "onsize changed " + w + " h " + h + " left " + PacmanConfig.sCanvasLeft + " top " + PacmanConfig.sCanvasTop);
+        computeSrcRectToDraw();
+    }
+    
+    public void computeSrcRectToDraw(){
+    	PacmanConfig.mPlayFiledBgSrc = new Rect(0, 0, PacmanConfig.sBgBitmapWidth, PacmanConfig.sBgBitmapHeight);
+    	PacmanConfig.mPlayFiledBgDst = new Rect(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop + PacmanConfig.sToolBarHeight, 
+				PacmanConfig.sCanvasLeft+PacmanConfig.sBgViewWidth, PacmanConfig.sCanvasTop+PacmanConfig.sBgViewHeight+PacmanConfig.sToolBarHeight);
     }
 
     @Override

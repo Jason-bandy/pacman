@@ -16,6 +16,7 @@ import jp.or.iidukat.example.pacman.entity.Playfield.PathElement.Dot;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.FloatMath;
@@ -314,6 +315,8 @@ public class Playfield extends BaseEntity {
         mAppearance.setTargetHeight(PacmanConfig.sBgPlayHeight);
         mAppearance.setTargetWidth(PacmanConfig.sBgPlayWidth);
         mAppearance.setOrder(99);
+        
+        mPaint = new Paint(Paint.FILTER_BITMAP_FLAG);
     }
 
     public void reset() {
@@ -642,7 +645,9 @@ public class Playfield extends BaseEntity {
     private int killScreenTileY;
 
 	private Matrix matrix = new Matrix();
-    
+
+	private Paint mPaint;
+
     public void killScreen() {
         createKillScreenElement(272, 0, 200, 80, false);
         createKillScreenElement(280, 80, 192, 56, false);
@@ -695,10 +700,7 @@ public class Playfield extends BaseEntity {
     	canvas.drawBitmap(bg, matrix, null);
 		canvas.restore();*/
 //    	mAppearance.drawBitmap(canvas);
-    	Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
-		Rect dst = new Rect(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop + PacmanConfig.sToolBarHeight, 
-				PacmanConfig.sCanvasLeft+PacmanConfig.sBgViewWidth, PacmanConfig.sCanvasTop+PacmanConfig.sBgViewHeight+PacmanConfig.sToolBarHeight);
-		canvas.drawBitmap(bg, src, dst, null);
+		canvas.drawBitmap(bg, PacmanConfig.mPlayFiledBgSrc, PacmanConfig.mPlayFiledBgDst, mPaint);
     }
     
     public Pacman getPacman() {
