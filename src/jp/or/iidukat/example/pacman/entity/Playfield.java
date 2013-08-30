@@ -806,8 +806,8 @@ public class Playfield extends BaseEntity {
         void init(int x, int y) {
             super.init(x, y);
             Appearance a = getAppearance();
-            a.setLeftOffset((float)PacmanConfig.sDotsSize/2); //TODO FOOD LEFT TOP (3, 3) NEED REVISE
-            a.setTopOffset((float)PacmanConfig.sDotsSize/2);
+            a.setLeftOffset(-(float)PacmanConfig.sDotsSize/2); //TODO FOOD LEFT TOP (3, 3) NEED REVISE
+            a.setTopOffset(-(float)PacmanConfig.sDotsSize/2);
             a.setWidth(PacmanConfig.sDotsSize);
             a.setHeight(PacmanConfig.sDotsSize);
             a.setBgColor(0xf8b090);
