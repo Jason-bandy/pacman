@@ -1908,13 +1908,15 @@ public class PacmanGame {
         if (hDivw > 1.66 || true){// 1.667 = 800/480;
 
 
-        	elementWidth = (height-statusBarHeight)/(PacmanConfig.sHeightPE );
+        	elementWidth = (height-statusBarHeight)/(PacmanConfig.sHeightPE+0.5f) ;
         	
+        	float factor = (int)elementWidth/elementWidth;
+        	Log.d(TAG, "elementWidth " + elementWidth + " factor " + factor);
         	elementWidth = (int)elementWidth;
         	
         	PacmanConfig.sBgViewWidth = (int) (elementWidth*(PacmanConfig.sWidthPE) + 10);
 
-        	PacmanConfig.sBgPlayHeight = height - statusBarHeight ;
+        	PacmanConfig.sBgPlayHeight = (int) ((height - statusBarHeight) * factor);
         	PacmanConfig.sBgPlayWidth = PacmanConfig.sBgPlayHeight*mPlayFieldBg.getWidth()/mPlayFieldBg.getHeight();
         	
         	PacmanConfig.sBgViewHeight = (int) (elementWidth *(PacmanConfig.sHeightPE));
@@ -1924,12 +1926,12 @@ public class PacmanGame {
         	
         	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
 
-//        	PacmanConfig.sBorderLeft = (int) (5*PacmanConfig.sScaleFactor-PacmanConfig.sDots_left);
-//        	PacmanConfig.sBorderTop = (int) (5*PacmanConfig.sScaleFactor-PacmanConfig.sDots_top) ;//TODO why top no at right position?
+        	PacmanConfig.sBorderLeft = (int) (0.25f*elementWidth-PacmanConfig.sDots_left);
+        	PacmanConfig.sBorderTop = (int) (0.25f*elementWidth-PacmanConfig.sDots_top) ;//TODO why top no at right position?
         	
         	PacmanConfig.sDotsSize = (int) (2*density);
-        	PacmanConfig.sActorSize = (int) (12*density);
-        	PacmanConfig.sActorLeftOffset = (int) (-5*density);
+        	PacmanConfig.sActorSize = (int) (16*density);
+        	PacmanConfig.sActorLeftOffset = (int) (-7*density);
         } else{
         	PacmanConfig.sBgPlayHeight = height-statusBarHeight;
         	PacmanConfig.sBgViewHeight = height-statusBarHeight;

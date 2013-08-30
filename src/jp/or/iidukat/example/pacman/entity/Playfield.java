@@ -687,20 +687,18 @@ public class Playfield extends BaseEntity {
 
     @Override
     void doDraw(Canvas canvas) {
-    	canvas.save();
+    	/*canvas.save();
     	float sy = PacmanConfig.sScaleFactor ;//(float)PacmanConfig.sBgViewWidth/PacmanConfig.sBgPlayWidth;
     	matrix.reset();
     	matrix.postScale(sy, sy);
     	canvas.translate(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop);
     	canvas.drawBitmap(bg, matrix, null);
-		canvas.restore();
-//    	mAppearance.drawBitmap(canvas);
-    	/*canvas.save();
-    	canvas.translate(0, 0);
-    	Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
-		Rect dst = new Rect(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop, PacmanConfig.sBgPlayWidth, PacmanConfig.sBgPlayHeight);
-		canvas.drawBitmap(bg, src, dst, null);
 		canvas.restore();*/
+//    	mAppearance.drawBitmap(canvas);
+    	Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
+		Rect dst = new Rect(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop, 
+				PacmanConfig.sCanvasLeft+PacmanConfig.sBgPlayWidth, PacmanConfig.sCanvasTop+PacmanConfig.sBgPlayHeight);
+		canvas.drawBitmap(bg, src, dst, null);
     }
     
     public Pacman getPacman() {
