@@ -3,6 +3,8 @@ package jp.or.iidukat.example.pacman.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
@@ -15,7 +17,7 @@ public class Lives extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setLeft(384);
+        a.setLeft(PacmanConfig.sBgViewWidth - 80);
         a.setTop(0);
         a.setHeight(16);
         a.setWidth(80);

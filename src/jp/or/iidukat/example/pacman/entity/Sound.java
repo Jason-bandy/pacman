@@ -12,8 +12,8 @@ public class Sound extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setLeft(0);
-        a.setTop(156);
+        a.setLeft(8*12);
+        a.setTop(0);
         a.setWidth(12);
         a.setHeight(12);
         a.prepareBkPos(PacmanConfig.sBorderLeft, PacmanConfig.sBorderTop-16);

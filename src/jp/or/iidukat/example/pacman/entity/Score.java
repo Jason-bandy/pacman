@@ -3,6 +3,8 @@ package jp.or.iidukat.example.pacman.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.or.iidukat.example.pacman.PacmanConfig;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
@@ -17,7 +19,7 @@ public class Score extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setLeft(40);
+        a.setLeft(PacmanConfig.sBorderLeft);
         a.setTop(3);
         a.setWidth(80);
         a.setHeight(8);
