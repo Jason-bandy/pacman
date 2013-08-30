@@ -26,6 +26,7 @@ public class PacmanConfig {
 	public static final int sDots_left = 1;//(int) (10/1.5);
 	public static final int sDots_top = 1;
 	public static final int sToolBarHeight = 50;
+	public static int sDotsSize = 0;
 	public static int sBorderLeft ;
 	public static int sBorderTop ;
 	public static Bitmap sDotsBitmap = null;
@@ -33,6 +34,10 @@ public class PacmanConfig {
 	public static float sScaleFactor;
 	public static int sDrawTx;
 	public static int sDrawTy;
+	public static int sActorSize;
+	public static int sActorLeftOffset;
+	public static int sCanvasTop;
+	public static int sCanvasLeft;
 	
 	
 	

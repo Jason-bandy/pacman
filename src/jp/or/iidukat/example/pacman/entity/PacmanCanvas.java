@@ -24,8 +24,8 @@ public class PacmanCanvas extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setWidth(PacmanConfig.sBgViewWidth);
-        a.setHeight(PacmanConfig.sBgViewHeight);
+        a.setWidth(PacmanConfig.sBgPlayWidth);
+        a.setHeight(PacmanConfig.sBgPlayHeight);
         a.setBgColor(0x000000);
     }
 

@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 
 abstract class BaseEntity implements Entity {
     
@@ -120,7 +121,8 @@ abstract class BaseEntity implements Entity {
     }
     
     public class AppearanceImpl implements Appearance {
-        private int height;
+        private static final String TAG = "AppearanceImpl";
+		private int height;
         private int width;
         private float top;
         private float topOffset;
@@ -148,6 +150,7 @@ abstract class BaseEntity implements Entity {
 
 		public void setTargetHeight(int targetHeight) {
 			this.targetHeight = targetHeight;
+			Log.d(TAG, " setTArget width " + targetHeight);
 		}
 
 		private int targetWidth;
@@ -158,6 +161,7 @@ abstract class BaseEntity implements Entity {
 
 		public void setTargetWidth(int targetWidth) {
 			this.targetWidth = targetWidth;
+			Log.d(TAG, " setTArget width " + targetWidth);
 		}
 
 		AppearanceImpl(Bitmap sourceImage) {
@@ -377,6 +381,8 @@ abstract class BaseEntity implements Entity {
                     adjustedPos[0],
                     adjustedPos[1] + adjustedTargetSize[1],
                     adjustedPos[0] + adjustedTargetSize[0]);
+            if (targetHeight != 0){
+            }
             canvas.drawBitmap(sourceImage, src, dest, null);
         }
         

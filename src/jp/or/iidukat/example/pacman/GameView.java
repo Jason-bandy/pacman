@@ -47,16 +47,18 @@ public class GameView extends View {
     
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    	Log.d(TAG, "onsize changed " + w + " h " + h);
         canvasWidth = w > PacmanConfig.sBgPlayWidth ? w : PacmanConfig.sBgPlayWidth;
         canvasHeight = h > PacmanConfig.sBgPlayHeight ? h : PacmanConfig.sBgPlayHeight;
+        PacmanConfig.sCanvasLeft = (canvasWidth - PacmanConfig.sBgPlayWidth) / 2;
+        PacmanConfig.sCanvasTop = (canvasHeight - PacmanConfig.sBgPlayHeight) / 2;
+        Log.d(TAG, "onsize changed " + w + " h " + h + " left " + PacmanConfig.sCanvasLeft + " top " + PacmanConfig.sCanvasTop);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         PacmanCanvas canvasEl = game.getCanvasEl();
-        canvasEl.setLeft((canvasWidth - PacmanConfig.sBgPlayWidth) / 2);
-        canvasEl.setTop((canvasHeight - PacmanConfig.sBgPlayHeight) / 2);
+        canvasEl.setLeft(PacmanConfig.sCanvasLeft);
+        canvasEl.setTop(PacmanConfig.sCanvasTop);
         canvasEl.draw(canvas);
     }
 

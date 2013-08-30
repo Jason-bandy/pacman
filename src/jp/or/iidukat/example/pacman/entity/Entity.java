@@ -26,6 +26,10 @@ public interface Entity extends Comparable<Entity> {
         void setHeight(int height);
         int getWidth();
         void setWidth(int width);
+        
+        void setTargetHeight(int targetHeight);        
+        void setTargetWidth(int targetWidth);
+        
         float[] getAbsolutePos();
         float getTop();
         void setTop(float top);

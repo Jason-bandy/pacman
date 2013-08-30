@@ -72,9 +72,10 @@ public class Playfield extends BaseEntity {
     	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 9),
     	Path.createHorizontalPath(1, PacmanConfig.sHeightPE-1, PacmanConfig.sWidthPE-1),
     	
-    	//====================================//
-    	Path.createHorizontalPath(0, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 7),
-    	Path.createHorizontalPath(15, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 7),
+    	//==============中线 水平======================//
+    	Path.createHorizontalPath(1, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 6),
+    	Path.createHorizontalPath(15, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 6, 6),
+    	
     	Path.createHorizontalPath(1, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12, 9),
     	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12, 9),
     	
@@ -143,8 +144,8 @@ public class Playfield extends BaseEntity {
         Path.createHorizontalPath(24, 15, 12),
         Path.createVerticalPath(27, 4, 9),
         Path.createHorizontalPath(52, 9, 5),*/
-        Path.createTunnelPath(PacmanConfig.sWidthPE-5, 18, 5),
-        Path.createTunnelPath(0, PacmanConfig.sStepWidth, 5),
+        /*Path.createTunnelPath(PacmanConfig.sWidthPE-5, 18, 5),
+        Path.createTunnelPath(0, PacmanConfig.sStepWidth, 5),*/
     };
 
     private static final Path[] PATHS_HAVING_NO_DOT = {
@@ -305,12 +306,13 @@ public class Playfield extends BaseEntity {
         a.setHeight(PacmanConfig.sBgPlayHeight);
         a.setOrder(99);
         mAppearance = new BaseEntity.AppearanceImpl(bg);
-        mAppearance.setTop(0);
-        mAppearance.setLeft(0);
+        mAppearance.setTop(PacmanConfig.sBorderTop);
+        mAppearance.setLeft(PacmanConfig.sBorderLeft);
+        Log.d(TAG, "init original w/h " + bg.getWidth() + " " + bg.getHeight() + " play w " + PacmanConfig.sBgPlayWidth + " h " + PacmanConfig.sBgPlayHeight);
         mAppearance.setWidth(bg.getWidth());
         mAppearance.setHeight(bg.getHeight());
-        mAppearance.setTargetHeight(PacmanConfig.sBgPlayWidth);
-        mAppearance.setTargetWidth(PacmanConfig.sBgPlayHeight);
+        mAppearance.setTargetHeight(PacmanConfig.sBgPlayHeight);
+        mAppearance.setTargetWidth(PacmanConfig.sBgPlayWidth);
         mAppearance.setOrder(99);
     }
 
@@ -685,16 +687,20 @@ public class Playfield extends BaseEntity {
 
     @Override
     void doDraw(Canvas canvas) {
+    	canvas.save();
     	float sy = PacmanConfig.sScaleFactor ;//(float)PacmanConfig.sBgViewWidth/PacmanConfig.sBgPlayWidth;
-//		float sx = sy;
-		
-//		    	mAppearance.drawBitmap(canvas);
     	matrix.reset();
     	matrix.postScale(sy, sy);
-		canvas.drawBitmap(bg, matrix, null);
-    	/*Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
-		Rect dst = new Rect(0, 0, 480, 720);
-		canvas.drawBitmap(bg, src, dst, null);*/
+    	canvas.translate(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop);
+    	canvas.drawBitmap(bg, matrix, null);
+		canvas.restore();
+//    	mAppearance.drawBitmap(canvas);
+    	/*canvas.save();
+    	canvas.translate(0, 0);
+    	Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
+		Rect dst = new Rect(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop, PacmanConfig.sBgPlayWidth, PacmanConfig.sBgPlayHeight);
+		canvas.drawBitmap(bg, src, dst, null);
+		canvas.restore();*/
     }
     
     public Pacman getPacman() {
@@ -802,10 +808,10 @@ public class Playfield extends BaseEntity {
         void init(int x, int y) {
             super.init(x, y);
             Appearance a = getAppearance();
-            a.setLeftOffset(-1f); //TODO FOOD LEFT TOP (3, 3) NEED REVISE
-            a.setTopOffset(-1f);
-            a.setWidth(2);
-            a.setHeight(2);
+            a.setLeftOffset((float)PacmanConfig.sDotsSize/2); //TODO FOOD LEFT TOP (3, 3) NEED REVISE
+            a.setTopOffset((float)PacmanConfig.sDotsSize/2);
+            a.setWidth(PacmanConfig.sDotsSize);
+            a.setHeight(PacmanConfig.sDotsSize);
             a.setBgColor(0xf8b090);
             a.setOrder(100);
 //            this.isNeedDensity = true; //TODO  draw dots
