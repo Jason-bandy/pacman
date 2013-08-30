@@ -1907,10 +1907,11 @@ public class PacmanGame {
         Log.d(TAG, "bitmap bg width " + mPlayFieldBg.getWidth() + " height " + mPlayFieldBg.getHeight() + " statusBarHeight " + statusBarHeight);
         if (hDivw > 1.66 || true){// 1.667 = 800/480;
 
+        	PacmanConfig.sToolBarHeight = (int) (12*density);
 
-        	elementWidth = (height-statusBarHeight)/(PacmanConfig.sHeightPE+0.5f) ;
+        	elementWidth = (height-statusBarHeight - PacmanConfig.sToolBarHeight)/(PacmanConfig.sHeightPE+0.5f) ; // 0.5f = (5+5)/20 ; 就是游戏区域的边框大小占的stepWidth。
         	
-        	float factor = (int)elementWidth/elementWidth;
+        	float factor = (int)elementWidth/elementWidth; // 计算出来的stepWidth如果不是整数，就要计算下取整后相差的比例，然后地图背景也要缩放这个比例
         	Log.d(TAG, "elementWidth " + elementWidth + " factor " + factor);
         	elementWidth = (int)elementWidth;
         	
@@ -1919,7 +1920,8 @@ public class PacmanGame {
         	PacmanConfig.sBgPlayHeight = (int) ((height - statusBarHeight) * factor);
         	PacmanConfig.sBgPlayWidth = PacmanConfig.sBgPlayHeight*mPlayFieldBg.getWidth()/mPlayFieldBg.getHeight();
         	
-        	PacmanConfig.sBgViewHeight = (int) (elementWidth *(PacmanConfig.sHeightPE));
+        	PacmanConfig.sBgViewHeight = PacmanConfig.sBgPlayHeight - PacmanConfig.sToolBarHeight;
+        	PacmanConfig.sBgViewWidth = PacmanConfig.sBgViewHeight*mPlayFieldBg.getWidth()/mPlayFieldBg.getHeight();
         	Log.d(TAG, "border width " + (sw-PacmanConfig.sBorderLeft));
         	Log.d(TAG, "element width " + elementWidth + " densitydpi " + densitydpi);
         	Log.d(TAG, " width height  " + PacmanConfig.sBgPlayWidth + " height " + PacmanConfig.sBgPlayHeight);
@@ -1927,7 +1929,8 @@ public class PacmanGame {
         	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
 
         	PacmanConfig.sBorderLeft = (int) (0.25f*elementWidth-PacmanConfig.sDots_left);
-        	PacmanConfig.sBorderTop = (int) (0.25f*elementWidth-PacmanConfig.sDots_top) ;//TODO why top no at right position?
+        	PacmanConfig.sBorderTop = (int) (0.25f*elementWidth-PacmanConfig.sDots_top) + PacmanConfig.sToolBarHeight ;//TODO why top no at right position?
+        	
         	
         	PacmanConfig.sDotsSize = (int) (2*density);
         	PacmanConfig.sActorSize = (int) (16*density);

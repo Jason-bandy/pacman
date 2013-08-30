@@ -88,12 +88,12 @@ public class Playfield extends BaseEntity {
     	Path.createVerticalPath(1, 1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
     	Path.createVerticalPath(1, PacmanConfig.sHeightPE - (PacmanConfig.sWordVPE + PacmanConfig.sLinePE)-1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
     	//第二竖线
-    	Path.createVerticalPath(3, 1 + PacmanConfig.sWordVPE + PacmanConfig.sLinePE, 12),
+    	Path.createVerticalPath(3, 1 + PacmanConfig.sWordVPE + PacmanConfig.sLinePE, 13),
 
     	//最后一个竖线
     	Path.createVerticalPath(20, 1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
     	Path.createVerticalPath(20, PacmanConfig.sHeightPE - (PacmanConfig.sWordVPE + PacmanConfig.sLinePE)-1, PacmanConfig.sWordVPE + PacmanConfig.sLinePE ),
-    	Path.createVerticalPath(18, 1 + PacmanConfig.sWordVPE + PacmanConfig.sLinePE, 12),
+    	Path.createVerticalPath(18, 1 + PacmanConfig.sWordVPE + PacmanConfig.sLinePE, 13),
     	
     	Path.createVerticalPath(5, 1, 2 + 2*PacmanConfig.sLinePE),
     	Path.createVerticalPath(9, 1, -1 + PacmanConfig.sPathPE+PacmanConfig.sWordVPE+PacmanConfig.sPathPE),
@@ -696,8 +696,8 @@ public class Playfield extends BaseEntity {
 		canvas.restore();*/
 //    	mAppearance.drawBitmap(canvas);
     	Rect src = new Rect(0, 0, bg.getWidth(), bg.getHeight());
-		Rect dst = new Rect(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop, 
-				PacmanConfig.sCanvasLeft+PacmanConfig.sBgPlayWidth, PacmanConfig.sCanvasTop+PacmanConfig.sBgPlayHeight);
+		Rect dst = new Rect(PacmanConfig.sCanvasLeft, PacmanConfig.sCanvasTop + PacmanConfig.sToolBarHeight, 
+				PacmanConfig.sCanvasLeft+PacmanConfig.sBgViewWidth, PacmanConfig.sCanvasTop+PacmanConfig.sBgViewHeight+PacmanConfig.sToolBarHeight);
 		canvas.drawBitmap(bg, src, dst, null);
     }
     

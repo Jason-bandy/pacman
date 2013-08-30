@@ -25,7 +25,7 @@ public class PacmanConfig {
 	public static final float sPenPosY = 13;
 	public static final int sDots_left = 1;//(int) (10/1.5);
 	public static final int sDots_top = 1;
-	public static final int sToolBarHeight = 50;
+	public static int sToolBarHeight;
 	public static int sDotsSize = 0;
 	public static int sBorderLeft ;
 	public static int sBorderTop ;
