@@ -39,7 +39,7 @@ public abstract class PlayfieldActor extends Actor {
         }
         
         InitPosition(float x, float y, Direction dir, float scatterX, float scatterY) {
-            this.x = x;
+            this.x = x+PacmanConfig.sOffsetElement;
             this.y = y;
             this.dir = dir;
             this.scatterX = scatterX;

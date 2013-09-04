@@ -44,11 +44,11 @@ public class Playfield extends BaseEntity {
         }
 
         static Path createHorizontalPath(int x, int y, int w) {
-            return new Path(x, y, w, 0);
+            return new Path(x+PacmanConfig.sOffsetElement, y, w, 0);
         }
 
         static Path createVerticalPath(int x, int y, int h) {
-            return new Path(x, y, 0, h);
+            return new Path(x+PacmanConfig.sOffsetElement, y, 0, h);
         }
 
         static Path createTunnelPath(int x, int y, int w) {
@@ -87,6 +87,8 @@ public class Playfield extends BaseEntity {
     	
     	Path.createHorizontalPath(6, 15, 10), //幽灵nest out.
     	
+    	Path.createHorizontalPath(6, 21, 10), //幽灵nest底部
+    	
     	
     	
     	// 左边第一竖线
@@ -110,13 +112,13 @@ public class Playfield extends BaseEntity {
     	Path.createVerticalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12 , PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 1),
     	Path.createVerticalPath(9, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12 , PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 1),
     	
-        /*Path.createTunnelPath(PacmanConfig.sWidthPE-5, 18, 5),
-        Path.createTunnelPath(0, PacmanConfig.sStepWidth, 5),*/
+        Path.createTunnelPath(PacmanConfig.sWidthPE-6+PacmanConfig.sOffsetElement, 18, 8),
+        Path.createTunnelPath(1, 18, 4),
     };
 
     private static final Path[] PATHS_HAVING_NO_DOT = {
-    	Path.createHorizontalPath(1, 18, 2),
-        Path.createHorizontalPath(19, 18, 2),
+    	Path.createHorizontalPath(0, 18, 3),
+        Path.createHorizontalPath(19, 18, 3 + PacmanConfig.sOffsetElement),
        /* 
         Path.createVerticalPath(44, 2, 10),
         Path.createVerticalPath(35, 5, 7),*/
@@ -124,7 +126,7 @@ public class Playfield extends BaseEntity {
         Path.createHorizontalPath(36, 10, PacmanConfig.sStepWidth),
         Path.createHorizontalPath(39, 15, 2),*/
     	
-    	Path.createHorizontalPath(7, 15, 8), //幽灵nest out.
+    	Path.createHorizontalPath(7+PacmanConfig.sOffsetElement, 15, 8), //幽灵nest out.
     };
 
     public static class Position {
@@ -146,20 +148,20 @@ public class Playfield extends BaseEntity {
     }
 
     private static final Position[] ENERGIZER_POSITIONS = {
-        new Position(5, 6),
-        new Position(5, PacmanConfig.sHeightPE-4),
-        new Position(16, 8),
-        new Position(16, PacmanConfig.sHeightPE-4),
-        new Position(9, 12),
+        new Position(5+PacmanConfig.sOffsetElement, 6),
+        new Position(5+PacmanConfig.sOffsetElement, PacmanConfig.sHeightPE-4),
+        new Position(16+PacmanConfig.sOffsetElement, 8),
+        new Position(16+PacmanConfig.sOffsetElement, PacmanConfig.sHeightPE-4),
+        new Position(9+PacmanConfig.sOffsetElement, 12),
     };
 
     // warp tunnel
     static final Position[] TUNNEL_POS = { //TODO what' mean 2, 63
-        new Position(0, 12),
-        new Position(21, 12),
+        new Position(1, 18),
+        new Position(22, 18),
     };
 
-    public static final int[] PEN_ENTRANCE = {15, 10}; // the entrance position of the ghost's nest
+    public static final int[] PEN_ENTRANCE = {15, 10+PacmanConfig.sOffsetElement}; // the entrance position of the ghost's nest
     static final int[] FRUIT_POSITION = { PacmanConfig.sBgViewHeight, PacmanConfig.sBgViewWidth };
 
 	private static final String TAG = "Playfield";
@@ -852,7 +854,7 @@ public class Playfield extends BaseEntity {
             Appearance a = getAppearance();
             a.setWidth(PacmanConfig.sStepWidth*3 - 6);
             a.setHeight((int) (PacmanConfig.sStepWidth*0.5f) - 6);
-            a.setLeft(PacmanConfig.sBorderLeft + (PacmanConfig.sLinePE + PacmanConfig.sWordHPE + 1) * PacmanConfig.sStepWidth +3);
+            a.setLeft(PacmanConfig.sBorderLeft + (PacmanConfig.sLinePE + PacmanConfig.sWordHPE + 1 + PacmanConfig.sOffsetElement) * PacmanConfig.sStepWidth + 3);
             a.setTop(PacmanConfig.sBorderTop + (PacmanConfig.sLinePE*2 + PacmanConfig.sWordVPE + 3) * PacmanConfig.sStepWidth + 3);
             a.setBgColor(0xffaaa5);
         }

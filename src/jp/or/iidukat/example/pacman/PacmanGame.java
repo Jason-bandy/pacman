@@ -1935,8 +1935,10 @@ public class PacmanGame {
         	PacmanConfig.sScaleFactor = (float)PacmanConfig.sBgPlayHeight/mPlayFieldBg.getHeight();
         	PacmanConfig.sSpeedFactor =  elementWidth/8;
 
-        	PacmanConfig.sBorderLeft = (int) (0.25f*elementWidth-PacmanConfig.sDots_left);
+        	PacmanConfig.sBorderLeft = (int) (0.25f*elementWidth-PacmanConfig.sDots_left)-(int) ( PacmanConfig.sOffsetElement* elementWidth);
         	PacmanConfig.sBorderTop = (int) (0.25f*elementWidth-PacmanConfig.sDots_top) + PacmanConfig.sToolBarHeight ;//TODO why top no at right position?
+        	
+        	PacmanConfig.sDots_left  =  + 1;
         	
         	
         	PacmanConfig.sDotsSize = (int) (2*density);

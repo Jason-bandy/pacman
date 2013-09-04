@@ -38,10 +38,14 @@ public abstract class Ghost extends PlayfieldActor {
         final float dest;
         final float speed;
         MoveInPen(float x, float y, Direction dir, float dest, float speed) {
-            this.x = x;
+            this.x = x+PacmanConfig.sOffsetElement;
             this.y = y;
             this.dir = dir;
-            this.dest = dest;
+            if (dir == Direction.DOWN || dir == Direction.UP){
+            	this.dest = dest;
+            } else {
+            	this.dest = dest + PacmanConfig.sOffsetElement;
+            }
             this.speed = speed*2f;
         }
     }
