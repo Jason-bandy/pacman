@@ -126,7 +126,7 @@ public class Playfield extends BaseEntity {
         Path.createHorizontalPath(36, 10, PacmanConfig.sStepWidth),
         Path.createHorizontalPath(39, 15, 2),*/
     	
-    	Path.createHorizontalPath(7+PacmanConfig.sOffsetElement, 15, 8), //幽灵nest out.
+    	Path.createHorizontalPath(6+PacmanConfig.sOffsetElement, 15, 8), //幽灵nest out.
     };
 
     public static class Position {
@@ -162,7 +162,7 @@ public class Playfield extends BaseEntity {
     };
 
     public static final int[] PEN_ENTRANCE = {15, 10+PacmanConfig.sOffsetElement}; // the entrance position of the ghost's nest
-    static final int[] FRUIT_POSITION = { PacmanConfig.sBgViewHeight, PacmanConfig.sBgViewWidth };
+    public static final int[] FRUIT_POSITION = { PacmanConfig.sFruit_y, (PacmanConfig.sFruit_x+PacmanConfig.sOffsetElement)};
 
 	private static final String TAG = "Playfield";
 

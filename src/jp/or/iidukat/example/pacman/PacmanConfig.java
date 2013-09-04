@@ -46,6 +46,8 @@ public class PacmanConfig {
 	public static Rect mPlayFiledBgSrc;
 	public static Rect mPlayFiledBgDst;
 	public static int sOffsetElement = 1;
+	public static int sFruit_x = 3;
+	public static int sFruit_y = 24;
 	
 	
 	

@@ -25,9 +25,9 @@ public class Pinky extends Ghost {
     			m.put(
     					GhostMode.IN_PEN,
     					new MoveInPen[] {
-    							new MoveInPen(10.5f, 17, Direction.DOWN, 18, 0.48f),
-    							new MoveInPen(10.5f, 18, Direction.UP, 16.375f, 0.48f),
-    							new MoveInPen(10.5f, 16.375f, Direction.DOWN, 17, 0.48f),
+    							new MoveInPen(10.5f, 17, Direction.DOWN, 18.25f, 0.48f),
+    							new MoveInPen(10.5f, 18.25f, Direction.UP, 16.75f, 0.48f),
+    							new MoveInPen(10.5f, 16.75f, Direction.DOWN, 17, 0.48f),
     					});
     			m.put(
     					GhostMode.LEAVING_PEN,

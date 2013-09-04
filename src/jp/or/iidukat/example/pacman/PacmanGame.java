@@ -1947,6 +1947,9 @@ public class PacmanGame {
         	
         	Playfield.PEN_ENTRANCE[0] *= elementWidth;
         	Playfield.PEN_ENTRANCE[1] *= elementWidth;
+        	Playfield.FRUIT_POSITION[0] *= elementWidth;
+        	Playfield.FRUIT_POSITION[1] *= elementWidth;
+        	
         	Log.d(TAG, " pen entrance " + Playfield.PEN_ENTRANCE[1] + " " + Playfield.PEN_ENTRANCE[0]);
         } else{
         	PacmanConfig.sBgPlayHeight = height-statusBarHeight;

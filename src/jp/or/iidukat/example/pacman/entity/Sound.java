@@ -12,11 +12,12 @@ public class Sound extends BaseEntity {
 
     public void init() {
         Appearance a = getAppearance();
-        a.setLeft(8*12);
+        a.setLeft(8*12 + PacmanConfig.sStepWidth*PacmanConfig.sOffsetElement);
         a.setTop(PacmanConfig.sBgPlayHeight-12);
         a.setWidth(12);
         a.setHeight(12);
-        a.prepareBkPos(PacmanConfig.sBorderLeft, PacmanConfig.sBorderTop-16);
+//        a.prepareBkPos(PacmanConfig.sBorderLeft, PacmanConfig.sBorderTop);
+        a.prepareBkPos(216, 105);
     }
 
     //TODO turn on and turn off change position.

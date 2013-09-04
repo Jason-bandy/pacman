@@ -46,7 +46,7 @@ public abstract class Ghost extends PlayfieldActor {
             } else {
             	this.dest = dest + PacmanConfig.sOffsetElement;
             }
-            this.speed = speed*2f;
+            this.speed = speed*PacmanConfig.sSpeedFactor;
         }
     }
 
