@@ -12,7 +12,7 @@ import android.graphics.Bitmap;
 public class Clyde extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(9, 18, Direction.UP, 0, 20);
+        InitPosition.createGhostInitPosition(12.375f, 17, Direction.UP, 0, 20);
 
     // movements of Clyde in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
@@ -22,27 +22,27 @@ public class Clyde extends Ghost {
         m.put(
             GhostMode.IN_PEN,
             new MoveInPen[] {
-                new MoveInPen(9, 17, Direction.UP, 16, 0.48f),
-                new MoveInPen(9, 16, Direction.DOWN, 18f, 0.48f),
-                new MoveInPen(9, 18, Direction.UP, 17, 0.48f),
+                new MoveInPen(12.375f, 17, Direction.UP, 16.5f, 0.48f),
+                new MoveInPen(12.375f, 16.5f, Direction.DOWN, 18f, 0.48f),
+                new MoveInPen(12.375f, 18, Direction.UP, 17, 0.48f),
               });
         m.put(
             GhostMode.LEAVING_PEN,
             new MoveInPen[] {
-                new MoveInPen(9, 18, Direction.RIGHT, 10f, LEAVING_PEN_SPEED),
-                new MoveInPen(10, 18, Direction.UP, 15, LEAVING_PEN_SPEED),
+                new MoveInPen(12.375f, 18, Direction.LEFT, 10.5f, LEAVING_PEN_SPEED),
+                new MoveInPen(10.5f, 18, Direction.UP, 15, LEAVING_PEN_SPEED),
             });
         m.put(
             GhostMode.ENTERING_PEN,
             new MoveInPen[] {
-                new MoveInPen(10, 15, Direction.DOWN, 18, 1.6f),
-                new MoveInPen(10, 18, Direction.LEFT, 9f, 1.6f),
+                new MoveInPen(10.5f, 15, Direction.DOWN, 18, 1.6f),
+                new MoveInPen(10.5f, 18, Direction.RIGHT, 12.375f, 1.6f),
             });
         m.put(
             GhostMode.RE_LEAVING_FROM_PEN,
             new MoveInPen[] {
-            	new MoveInPen(9, 18, Direction.RIGHT, 10f, LEAVING_PEN_SPEED),
-            	new MoveInPen(10, 18, Direction.UP, 15, LEAVING_PEN_SPEED),
+            	new MoveInPen(12.375f, 18, Direction.LEFT, 10.5f, LEAVING_PEN_SPEED),
+            	new MoveInPen(10.5f, 18, Direction.UP, 15, LEAVING_PEN_SPEED),
             });
         MOVES_IN_PEN = Collections.unmodifiableMap(m);
     }

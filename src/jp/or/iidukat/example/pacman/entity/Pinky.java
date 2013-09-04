@@ -15,39 +15,33 @@ import android.graphics.Bitmap;
 public class Pinky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(1f, 12, Direction.UP, 0, 0);
+        InitPosition.createGhostInitPosition(10.5f, 17, Direction.DOWN, 0, -4);
 
     // movements of Pinky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
     static {
-        Map<GhostMode, MoveInPen[]> m =
-            new EnumMap<GhostMode, MoveInPen[]>(GhostMode.class);
-        /*m.put(
-            GhostMode.IN_PEN,
-            new MoveInPen[] {
-                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 2.625f, 0.48f),
-                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.RIGHT, 1.375f, 0.48f),
-                new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 2, 0.48f),
-            });
-        m.put(
-            GhostMode.LEAVING_PEN,
-            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 2, LEAVING_PEN_SPEED) });
-        m.put(
-            GhostMode.ENTERING_PEN,
-            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY-2, Direction.RIGHT, 7, 1.6f) });
-        m.put(
-            GhostMode.RE_LEAVING_FROM_PEN,
-            new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.LEFT, 4, LEAVING_PEN_SPEED) });*/
-            m.put(
-            		GhostMode.ENTERING_PEN,
-            		new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.DOWN, 7, 1.6f) });
-            m.put(
-            		GhostMode.RE_LEAVING_FROM_PEN,
-            		new MoveInPen[] { new MoveInPen(PacmanConfig.sPenPosX, PacmanConfig.sPenPosY, Direction.UP, 4, LEAVING_PEN_SPEED) });
+    	Map<GhostMode, MoveInPen[]> m =
+    			new EnumMap<GhostMode, MoveInPen[]>(GhostMode.class);
+    			m.put(
+    					GhostMode.IN_PEN,
+    					new MoveInPen[] {
+    							new MoveInPen(10.5f, 17, Direction.DOWN, 18, 0.48f),
+    							new MoveInPen(10.5f, 18, Direction.UP, 16.375f, 0.48f),
+    							new MoveInPen(10.5f, 16.375f, Direction.DOWN, 17, 0.48f),
+    					});
+    			m.put(
+    					GhostMode.LEAVING_PEN,
+    					new MoveInPen[] { new MoveInPen(10.5f, 17, Direction.UP, 15, LEAVING_PEN_SPEED) });
+    			m.put(
+    					GhostMode.ENTERING_PEN,
+    					new MoveInPen[] { new MoveInPen(10.5f, 15, Direction.DOWN, 17, 1.6f) });
+    			m.put(
+    					GhostMode.RE_LEAVING_FROM_PEN,
+    					new MoveInPen[] { new MoveInPen(10.5f, 17, Direction.UP, 15, LEAVING_PEN_SPEED) });
 
-        MOVES_IN_PEN = Collections.unmodifiableMap(m);
+    			MOVES_IN_PEN = Collections.unmodifiableMap(m);
     }
-    
+
     Pinky(Bitmap sourceImage, PacmanGame game) {
         super(sourceImage, game);
     }

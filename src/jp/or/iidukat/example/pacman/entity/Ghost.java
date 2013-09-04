@@ -28,7 +28,7 @@ public abstract class Ghost extends PlayfieldActor {
         }
     }
     
-    static final float LEAVING_PEN_SPEED = 0.8f * 0.4f;
+    static final float LEAVING_PEN_SPEED = 0.8f * 0.4f*2f;
 	private static final String TAG = "Ghost";
     
     static class MoveInPen {
@@ -42,7 +42,7 @@ public abstract class Ghost extends PlayfieldActor {
             this.y = y;
             this.dir = dir;
             this.dest = dest;
-            this.speed = speed;
+            this.speed = speed*2f;
         }
     }
 
@@ -246,7 +246,7 @@ public abstract class Ghost extends PlayfieldActor {
                 this.pos =
                     new float[] {
                         Playfield.PEN_ENTRANCE[0],
-                        Playfield.PEN_ENTRANCE[1] + 4
+                        Playfield.PEN_ENTRANCE[1] + PacmanConfig.sStepWidth/2
                     };
                 this.dir = this.modeChangedWhileInPen ? Direction.RIGHT : Direction.LEFT;
                 GhostMode mainMode = game.getMainGhostMode();

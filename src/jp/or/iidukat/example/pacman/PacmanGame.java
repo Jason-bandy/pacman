@@ -984,10 +984,9 @@ public class PacmanGame {
         restartActors();
         updateActorPositions();
         switchMainGhostMode(GhostMode.SCATTER, true);
-        for (int i = 2; i < 4; i++) {
-//            getGhosts()[i].switchGhostMode(GhostMode.IN_PEN);
+        for (int i = 1; i < 4; i++) {
+            getGhosts()[i].switchGhostMode(GhostMode.IN_PEN);
         }
-        getGhosts()[3].switchGhostMode(GhostMode.IN_PEN);
         dotEatingChannel = 0;
         dotEatingSoundPart = 1;
 
@@ -1943,6 +1942,10 @@ public class PacmanGame {
         	PacmanConfig.sDotsSize = (int) (2*density);
         	PacmanConfig.sActorSize = (int) (16*density);
         	PacmanConfig.sActorLeftOffset = (int) (-7*density);
+        	
+        	Playfield.PEN_ENTRANCE[0] *= elementWidth;
+        	Playfield.PEN_ENTRANCE[1] *= elementWidth;
+        	Log.d(TAG, " pen entrance " + Playfield.PEN_ENTRANCE[1] + " " + Playfield.PEN_ENTRANCE[0]);
         } else{
         	PacmanConfig.sBgPlayHeight = height-statusBarHeight;
         	PacmanConfig.sBgViewHeight = height-statusBarHeight;
