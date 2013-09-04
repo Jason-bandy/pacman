@@ -987,7 +987,7 @@ public class PacmanGame {
         for (int i = 2; i < 4; i++) {
 //            getGhosts()[i].switchGhostMode(GhostMode.IN_PEN);
         }
-//        getGhosts()[3].switchGhostMode(GhostMode.IN_PEN);
+        getGhosts()[3].switchGhostMode(GhostMode.IN_PEN);
         dotEatingChannel = 0;
         dotEatingSoundPart = 1;
 

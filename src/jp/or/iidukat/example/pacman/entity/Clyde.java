@@ -12,7 +12,7 @@ import android.graphics.Bitmap;
 public class Clyde extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(13f, 12, Direction.RIGHT, 0, 20);
+        InitPosition.createGhostInitPosition(9, 18, Direction.UP, 0, 20);
 
     // movements of Clyde in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
@@ -30,19 +30,19 @@ public class Clyde extends Ghost {
             GhostMode.LEAVING_PEN,
             new MoveInPen[] {
                 new MoveInPen(9, 18, Direction.RIGHT, 10f, LEAVING_PEN_SPEED),
-                new MoveInPen(10, 18, Direction.UP, 4, LEAVING_PEN_SPEED),
+                new MoveInPen(10, 18, Direction.UP, 15, LEAVING_PEN_SPEED),
             });
         m.put(
             GhostMode.ENTERING_PEN,
             new MoveInPen[] {
-                new MoveInPen(10, 17, Direction.DOWN, 18, 1.6f),
+                new MoveInPen(10, 15, Direction.DOWN, 18, 1.6f),
                 new MoveInPen(10, 18, Direction.LEFT, 9f, 1.6f),
             });
         m.put(
             GhostMode.RE_LEAVING_FROM_PEN,
             new MoveInPen[] {
             	new MoveInPen(9, 18, Direction.RIGHT, 10f, LEAVING_PEN_SPEED),
-            	new MoveInPen(10, 18, Direction.UP, 4, LEAVING_PEN_SPEED),
+            	new MoveInPen(10, 18, Direction.UP, 15, LEAVING_PEN_SPEED),
             });
         MOVES_IN_PEN = Collections.unmodifiableMap(m);
     }

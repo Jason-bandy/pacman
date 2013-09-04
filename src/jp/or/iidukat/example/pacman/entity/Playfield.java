@@ -83,6 +83,10 @@ public class Playfield extends BaseEntity {
     	Path.createHorizontalPath(1, PacmanConfig.sHeightPE-4, 5), // 9
     	Path.createHorizontalPath(12, PacmanConfig.sHeightPE-4, 5), // 9
     	
+    	Path.createHorizontalPath(9, PacmanConfig.sHeightPE-5, 4), // 9
+    	
+    	Path.createHorizontalPath(6, 15, 10), //幽灵nest out.
+    	
     	
     	
     	// 左边第一竖线
@@ -106,59 +110,21 @@ public class Playfield extends BaseEntity {
     	Path.createVerticalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12 , PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 1),
     	Path.createVerticalPath(9, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12 , PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 1),
     	
-//        Path.createVerticalPath(18, 2, PacmanConfig.sHeightPE),
-        /*Path.createVerticalPath(6, 1, 4),
-        Path.createVerticalPath(10, 1, 10),
-        Path.createVerticalPath(12, 1, 10),*/
-//        Path.createVerticalPath(18, 1, 10),
-        /*Path.createHorizontalPath(1, 4, 5),
-        Path.createVerticalPath(5, 1, 4),
-        Path.createVerticalPath(9, 1, 12),
-        Path.createVerticalPath(5, 12, 4),
-        Path.createVerticalPath(10, 12, 4),
-        Path.createHorizontalPath(5, 15, 16),
-        Path.createHorizontalPath(5, 12, 31),
-        Path.createVerticalPath(60, 1, 4),
-        Path.createVerticalPath(54, 1, 4),
-        Path.createVerticalPath(19, 1, 12),
-        Path.createHorizontalPath(19, 4, 26),
-        Path.createHorizontalPath(13, 5, 7),
-        Path.createVerticalPath(13, 5, 4),
-        Path.createHorizontalPath(13, PacmanConfig.sStepWidth, 3),
-        Path.createVerticalPath(56, 4, 9),
-        Path.createHorizontalPath(48, 4, 13),
-        Path.createVerticalPath(48, 1, 12),
-        Path.createVerticalPath(60, 12, 4),
-        Path.createHorizontalPath(44, 15, 17),
-        Path.createVerticalPath(54, 12, 4),
-        Path.createHorizontalPath(44, 12, 17),
-        Path.createVerticalPath(44, 1, 15),
-        Path.createHorizontalPath(41, 13, 4),
-        Path.createVerticalPath(41, 13, 3),
-        Path.createVerticalPath(38, 13, 3),
-        Path.createHorizontalPath(38, 15, 4),
-        Path.createHorizontalPath(35, 10, 10),
-        Path.createVerticalPath(35, 1, 15),
-        Path.createHorizontalPath(35, 13, 4),
-        Path.createVerticalPath(21, 12, 4),
-        Path.createVerticalPath(24, 12, 4),
-        Path.createHorizontalPath(24, 15, 12),
-        Path.createVerticalPath(27, 4, 9),
-        Path.createHorizontalPath(52, 9, 5),*/
         /*Path.createTunnelPath(PacmanConfig.sWidthPE-5, 18, 5),
         Path.createTunnelPath(0, PacmanConfig.sStepWidth, 5),*/
     };
 
     private static final Path[] PATHS_HAVING_NO_DOT = {
-       /* Path.createHorizontalPath(1, PacmanConfig.sStepWidth, PacmanConfig.sStepWidth),
-        Path.createHorizontalPath(57, PacmanConfig.sStepWidth, 9),
+    	Path.createHorizontalPath(1, 18, 2),
+        Path.createHorizontalPath(19, 18, 2),
+       /* 
         Path.createVerticalPath(44, 2, 10),
         Path.createVerticalPath(35, 5, 7),*/
        /* Path.createHorizontalPath(36, 4, PacmanConfig.sStepWidth),
         Path.createHorizontalPath(36, 10, PacmanConfig.sStepWidth),
         Path.createHorizontalPath(39, 15, 2),*/
     	
-    	Path.createHorizontalPath(6, 15, 10), //幽灵nest out.
+    	Path.createHorizontalPath(7, 15, 8), //幽灵nest out.
     };
 
     public static class Position {

@@ -39,7 +39,7 @@ public class PacmanConfig {
 	public static int sActorLeftOffset;
 	public static int sCanvasTop;
 	public static int sCanvasLeft;
-	public static float sSpeedFactor = 1.5f;
+	public static float sSpeedFactor = 2f;
 	public static int sBottomBarHeight;
 	public static int sBgBitmapHeight;
 	public static int sBgBitmapWidth;
