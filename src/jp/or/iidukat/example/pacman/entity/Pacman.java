@@ -13,7 +13,7 @@ import android.util.Log;
 public class Pacman extends PlayfieldActor {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createPlayerInitPosition(18f, 1, Direction.RIGHT);
+        InitPosition.createPlayerInitPosition(14, 24, Direction.LEFT);
 
 	private static final String TAG = "Pacman";
 

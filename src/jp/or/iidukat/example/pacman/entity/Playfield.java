@@ -155,8 +155,8 @@ public class Playfield extends BaseEntity {
 
     // warp tunnel
     static final Position[] TUNNEL_POS = { //TODO what' mean 2, 63
-        new Position(2, PacmanConfig.sStepWidth),
-        new Position(63, PacmanConfig.sStepWidth),
+        new Position(0, 12),
+        new Position(21, 12),
     };
 
     public static final int[] PEN_ENTRANCE = {15, 10}; // the entrance position of the ghost's nest
@@ -850,10 +850,10 @@ public class Playfield extends BaseEntity {
         
         void init() {
             Appearance a = getAppearance();
-            a.setWidth(PacmanConfig.sStepWidth*2);
-            a.setHeight(PacmanConfig.sStepWidth>>1);
-            a.setLeft(PacmanConfig.sBorderLeft + (PacmanConfig.sLinePE + PacmanConfig.sWordHPE + 1) * PacmanConfig.sStepWidth);
-            a.setTop(5 + PacmanConfig.sBorderTop + (PacmanConfig.sLinePE*2 + PacmanConfig.sWordVPE + 3) * PacmanConfig.sStepWidth);
+            a.setWidth(PacmanConfig.sStepWidth*3 - 6);
+            a.setHeight((int) (PacmanConfig.sStepWidth*0.5f) - 6);
+            a.setLeft(PacmanConfig.sBorderLeft + (PacmanConfig.sLinePE + PacmanConfig.sWordHPE + 1) * PacmanConfig.sStepWidth +3);
+            a.setTop(PacmanConfig.sBorderTop + (PacmanConfig.sLinePE*2 + PacmanConfig.sWordVPE + 3) * PacmanConfig.sStepWidth + 3);
             a.setBgColor(0xffaaa5);
         }
         
