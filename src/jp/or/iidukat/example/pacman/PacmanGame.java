@@ -1987,7 +1987,7 @@ public class PacmanGame {
         } catch (Exception e1) {
             e1.printStackTrace();
         } 
-        return 0;
+        return statusBarHeight;
     }
     
 
