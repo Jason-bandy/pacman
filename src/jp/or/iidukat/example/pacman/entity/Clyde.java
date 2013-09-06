@@ -12,7 +12,7 @@ import android.graphics.Bitmap;
 public class Clyde extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(12.375f, 17, Direction.UP, 0, 20);
+        InitPosition.createGhostInitPosition(12.375f, 17, Direction.UP, 0, PacmanConfig.sHeightPE);
 
     // movements of Clyde in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
@@ -47,8 +47,11 @@ public class Clyde extends Ghost {
         MOVES_IN_PEN = Collections.unmodifiableMap(m);
     }
 
+	private int traceThreshold;
+
     Clyde(Bitmap sourceImage, PacmanGame game) {
         super(sourceImage, game);
+        traceThreshold = PacmanConfig.sStepWidth*8;
     }
     
     @Override
@@ -66,7 +69,7 @@ public class Clyde extends Ghost {
         PlayfieldActor pacman = game.getPacman();
         float distance = getDistance(pacman.tilePos, this.tilePos);
         this.targetPos =
-            distance > 64
+            distance > traceThreshold
                 ? new float[] { pacman.tilePos[0], pacman.tilePos[1] }
                 : this.scatterPos;
     }

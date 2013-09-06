@@ -13,7 +13,7 @@ import android.graphics.Bitmap;
 public class Blinky extends Ghost {
 
     private static final InitPosition INIT_POS =
-    		InitPosition.createGhostInitPosition(10f, 15, Direction.LEFT, 57, -4);
+    		InitPosition.createGhostInitPosition(10f, 15, Direction.LEFT, PacmanConfig.sWidthPE, -15);
 
     // movements of Blinky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;

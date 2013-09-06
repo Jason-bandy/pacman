@@ -30,7 +30,7 @@ public class Score extends BaseEntity {
         for (int i = 0; i < DIGITS; i++) {
             Score.Number n =
                 new Score.Number(getAppearance().getSourceImage());
-            n.init(i * Number.WIDTH);
+            n.init(i * PacmanConfig.sScoreSize);
             n.setParent(this);
             numbers.add(n);
         }
@@ -79,6 +79,8 @@ public class Score extends BaseEntity {
             a.setLeft(left);
             a.setWidth(WIDTH);
             a.setHeight(HEIGHT);
+            a.setTargetWidth(PacmanConfig.sScoreSize);
+            a.setTargetHeight(PacmanConfig.sScoreSize);
             a.prepareBkPos(48, 0);
         }
 

@@ -18,8 +18,9 @@ public class Lives extends BaseEntity {
     public void init() {
         Appearance a = getAppearance();
         a.setLeft(PacmanConfig.sBgViewWidth - 80);
-        a.setTop(0);
+        a.setTop(PacmanConfig.sToolBarHeight-PacmanConfig.sScoreSize);
         a.setHeight(16);
+        a.setTargetHeight(PacmanConfig.sScoreSize);
         a.setWidth(80);
     }
 

@@ -1911,7 +1911,7 @@ public class PacmanGame {
         
         if (hDivw > 1.66 || true){// 1.667 = 800/480;
 
-        	PacmanConfig.sToolBarHeight = (int) (12*density);
+        	PacmanConfig.sToolBarHeight = (int) (5*density) + PacmanConfig.sScoreSize;
         	PacmanConfig.sBottomBarHeight = (int) (12*density);
 
         	elementWidth = (height-statusBarHeight - PacmanConfig.sToolBarHeight - PacmanConfig.sBottomBarHeight)
@@ -1936,7 +1936,7 @@ public class PacmanGame {
         	PacmanConfig.sSpeedFactor =  elementWidth/8;
 
         	PacmanConfig.sBorderLeft = (int) (0.25f*elementWidth-PacmanConfig.sDots_left)-(int) ( PacmanConfig.sOffsetElement* elementWidth);
-        	PacmanConfig.sBorderTop = (int) (0.25f*elementWidth-PacmanConfig.sDots_top) + PacmanConfig.sToolBarHeight ;//TODO why top no at right position?
+        	PacmanConfig.sBorderTop = (int) (0.25f*elementWidth-PacmanConfig.sDots_top) + PacmanConfig.sToolBarHeight  ;//TODO why top no at right position?
         	
         	PacmanConfig.sDots_left  =  + 1;
         	
@@ -1945,10 +1945,10 @@ public class PacmanGame {
         	PacmanConfig.sActorSize = (int) (16*density);
         	PacmanConfig.sActorLeftOffset = (int) (-7*density);
         	
-        	Playfield.PEN_ENTRANCE[0] *= elementWidth;
-        	Playfield.PEN_ENTRANCE[1] *= elementWidth;
-        	Playfield.FRUIT_POSITION[0] *= elementWidth;
-        	Playfield.FRUIT_POSITION[1] *= elementWidth;
+        	Playfield.PEN_ENTRANCE[0] = (int) (Playfield.PEN_ENTRANCE_BY_STEP[0] * elementWidth);
+        	Playfield.PEN_ENTRANCE[1] = (int) (Playfield.PEN_ENTRANCE_BY_STEP[1] * elementWidth);
+        	Playfield.FRUIT_POSITION[0] = (int) (Playfield.FRUIT_POSITION_BY_STEP[0] * elementWidth);
+        	Playfield.FRUIT_POSITION[1] = (int) (Playfield.FRUIT_POSITION_BY_STEP[1] * elementWidth);
         	
         	Log.d(TAG, " pen entrance " + Playfield.PEN_ENTRANCE[1] + " " + Playfield.PEN_ENTRANCE[0]);
         } else{
@@ -1987,7 +1987,7 @@ public class PacmanGame {
         } catch (Exception e1) {
             e1.printStackTrace();
         } 
-        return statusBarHeight;
+        return 0;
     }
     
 

@@ -15,7 +15,7 @@ import android.graphics.Bitmap;
 public class Pinky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(10.5f, 17, Direction.DOWN, 0, -4);
+        InitPosition.createGhostInitPosition(10.5f, 17, Direction.DOWN, 0, -10);
 
     // movements of Pinky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;

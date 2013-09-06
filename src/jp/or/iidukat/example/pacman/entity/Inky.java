@@ -15,7 +15,7 @@ import android.graphics.Bitmap;
 public class Inky extends Ghost {
 
     private static final InitPosition INIT_POS =
-        InitPosition.createGhostInitPosition(8.625f, 17, Direction.UP, 57, 20);
+        InitPosition.createGhostInitPosition(8.625f, 17, Direction.UP, PacmanConfig.sWidthPE, PacmanConfig.sHeightPE);
 
     // movements of Inky in the pen
     private static final Map<GhostMode, MoveInPen[]> MOVES_IN_PEN;
@@ -70,9 +70,9 @@ public class Inky extends Ghost {
         Move pacmanMove = pacman.dir.getMove();
         PlayfieldActor blinky = game.getBlinky();
         float[] pacmanDest = new float[] { pacman.tilePos[0], pacman.tilePos[1] };
-        pacmanDest[pacmanMove.getAxis()] += 16 * pacmanMove.getIncrement();
+        pacmanDest[pacmanMove.getAxis()] += PacmanConfig.sStepWidth*2 * pacmanMove.getIncrement();
         if (pacman.dir == Direction.UP) {
-            pacmanDest[1] -= 16;
+            pacmanDest[1] -= PacmanConfig.sStepWidth*2;
         }
         this.targetPos[0] = pacmanDest[0] * 2 - blinky.tilePos[0];
         this.targetPos[1] = pacmanDest[1] * 2 - blinky.tilePos[1];

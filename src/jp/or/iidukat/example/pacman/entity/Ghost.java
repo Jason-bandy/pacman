@@ -71,7 +71,7 @@ public abstract class Ghost extends PlayfieldActor {
         InitPosition p = getInitPosition();
         this.pos = new float[] {p.y * PacmanConfig.sStepWidth, p.x * PacmanConfig.sStepWidth};
         this.tilePos = new int[] {(int) p.y * PacmanConfig.sStepWidth, (int) p.x * PacmanConfig.sStepWidth};
-        this.targetPos = new float[] {p.scatterY * PacmanConfig.sStepWidth, p.scatterX * PacmanConfig.sStepWidth};
+        this.targetPos = new float[] {p.scatterY * PacmanConfig.sStepWidth, p.scatterX * PacmanConfig.sStepWidth}; //TODO targetPos
         this.scatterPos = new float[] {p.scatterY * PacmanConfig.sStepWidth, p.scatterX * PacmanConfig.sStepWidth};
         this.lastActiveDir = this.dir = p.dir;
         this.physicalSpeed = 0;

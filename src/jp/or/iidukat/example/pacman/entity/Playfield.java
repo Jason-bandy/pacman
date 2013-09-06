@@ -67,8 +67,8 @@ public class Playfield extends BaseEntity {
     // upper right:(60, 1), lower right:(60, 15).
     private static final Path[] PATHS = {
     	Path.createHorizontalPath(1, 1, PacmanConfig.sWidthPE-1),
-    	Path.createHorizontalPath(9, 1+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE+2),
-    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE-1, PacmanConfig.sWordHPE-PacmanConfig.sLinePE+1),
+    	Path.createHorizontalPath(9, 1+PacmanConfig.sPathPE+PacmanConfig.sLinePE, PacmanConfig.sWordHPE+2 - 4),
+//    	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+3*PacmanConfig.sLinePE-1, PacmanConfig.sWordHPE-PacmanConfig.sLinePE+1),
     	Path.createHorizontalPath(1, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 8),
     	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE, 9),
     	Path.createHorizontalPath(1, PacmanConfig.sHeightPE-1, PacmanConfig.sWidthPE-1),
@@ -80,10 +80,10 @@ public class Playfield extends BaseEntity {
     	Path.createHorizontalPath(1, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12, 9),
     	Path.createHorizontalPath(12, 1+PacmanConfig.sPathPE+PacmanConfig.sWordVPE + 12, 9),
     	
-    	Path.createHorizontalPath(1, PacmanConfig.sHeightPE-4, 5), // 9
+    	/*Path.createHorizontalPath(1, PacmanConfig.sHeightPE-4, 5), // 9
     	Path.createHorizontalPath(12, PacmanConfig.sHeightPE-4, 5), // 9
-    	
-    	Path.createHorizontalPath(9, PacmanConfig.sHeightPE-5, 4), // 9
+*/    	
+    	Path.createHorizontalPath(9, PacmanConfig.sHeightPE-5, 4), 
     	
     	Path.createHorizontalPath(6, 15, 10), //幽灵nest out.
     	
@@ -149,10 +149,10 @@ public class Playfield extends BaseEntity {
 
     private static final Position[] ENERGIZER_POSITIONS = {
         new Position(5+PacmanConfig.sOffsetElement, 6),
-        new Position(5+PacmanConfig.sOffsetElement, PacmanConfig.sHeightPE-4),
-        new Position(16+PacmanConfig.sOffsetElement, 8),
-        new Position(16+PacmanConfig.sOffsetElement, PacmanConfig.sHeightPE-4),
-        new Position(9+PacmanConfig.sOffsetElement, 12),
+//        new Position(5+PacmanConfig.sOffsetElement, PacmanConfig.sHeightPE-4),
+//        new Position(16+PacmanConfig.sOffsetElement, 8),
+//        new Position(16+PacmanConfig.sOffsetElement, PacmanConfig.sHeightPE-4),
+//        new Position(9+PacmanConfig.sOffsetElement, 12),
     };
 
     // warp tunnel
@@ -161,8 +161,10 @@ public class Playfield extends BaseEntity {
         new Position(22, 18),
     };
 
-    public static final int[] PEN_ENTRANCE = {15, 10+PacmanConfig.sOffsetElement}; // the entrance position of the ghost's nest
-    public static final int[] FRUIT_POSITION = { PacmanConfig.sFruit_y, (PacmanConfig.sFruit_x+PacmanConfig.sOffsetElement)};
+    public static int[] PEN_ENTRANCE = {0, 0}; // the entrance position of the ghost's nest
+    public static final int[] PEN_ENTRANCE_BY_STEP = {15, 10+PacmanConfig.sOffsetElement}; // the entrance position of the ghost's nest
+    public static final int[] FRUIT_POSITION = {0, 0};
+    public static final int[] FRUIT_POSITION_BY_STEP = { PacmanConfig.sFruit_y, (PacmanConfig.sFruit_x+PacmanConfig.sOffsetElement)};
 
 	private static final String TAG = "Playfield";
 
