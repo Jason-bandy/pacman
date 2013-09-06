@@ -69,7 +69,7 @@ public class PacmanGame {
         0.26f
     };
 
-    private static final int[] FPS_OPTIONS = { 60, 45, 30, }; // fps option
+    private static final int[] FPS_OPTIONS = { 90, 45, 30, }; // fps option
     private static final int DEFAULT_FPS = FPS_OPTIONS[0]; // default fps
 
     public static class LevelConfig {
@@ -216,6 +216,7 @@ public class PacmanGame {
         }
 
         private LevelConfig(Builder builder) {
+        	Log.d(TAG, "level config " + builder.ghostSpeed);
             this.ghostSpeed = builder.ghostSpeed*PacmanConfig.sSpeedFactor ;
             this.ghostTunnelSpeed = builder.ghostTunnelSpeed*PacmanConfig.sSpeedFactor ;
             this.playerSpeed = builder.playerSpeed*PacmanConfig.sSpeedFactor ;

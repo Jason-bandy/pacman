@@ -12,7 +12,7 @@ public class PacmanConfig {
 	public static int sBgPlayHeight ;//136;
 	
 	public static int sStepWidth = 0;//(int) (21/sDensity);//TODO density value instead of 1.5f
-	public static final int sBg_res = R.drawable.pacman_sprite;
+	public static final int sBg_res = R.drawable.pacmanentity;
 	public static final int sBgTranslateX = 0;//246;
 	public static final int sWordHPE = 6;
 	public static final int sWordVPE = 9;
@@ -39,7 +39,7 @@ public class PacmanConfig {
 	public static int sActorLeftOffset;
 	public static int sCanvasTop;
 	public static int sCanvasLeft;
-	public static float sSpeedFactor = 4f;
+	public static float sSpeedFactor = 1.3f;
 	public static int sBottomBarHeight;
 	public static int sBgBitmapHeight;
 	public static int sBgBitmapWidth;
